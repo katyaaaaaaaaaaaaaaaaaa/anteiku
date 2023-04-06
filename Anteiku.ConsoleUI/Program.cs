@@ -1,13 +1,14 @@
-﻿using Anteiku.DAL;
-using Anteiku.DAL.Entities;
-using Anteiku.DAL.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Anteiku.DAL.Repositories;
 
 namespace Anteiku.ConsoleUI;
 
 internal class Program
 {
-    //КОММЕНТАРИЙ ДЛЯ ГИТА
+    //HOMEWORK:
+    //1. Почитать про репозиторий
+    //2. Добавить сущость Блюдо в БД(создать ентити,
+    //добавить в контекст,
+    //создать репозиторий с набором метод для работы с этой сущностью)
     static void Main(string[] args)
     {
         UserRepository userRepository = new UserRepository();
