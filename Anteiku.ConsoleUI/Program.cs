@@ -2,36 +2,37 @@
 using Anteiku.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Anteiku.ConsoleUI
+namespace Anteiku.ConsoleUI;
+
+internal class Program
 {
-    internal class Program
+    //КОММЕНТАРИЙ ДЛЯ ГИТА
+    static void Main(string[] args)
     {
-        //КОММЕНТАРИЙ ДЛЯ ГИТА
-        static void Main(string[] args)
+        string connectionString = "Server=(localdb)\\mssqllocaldb;Database=AnteikuDb;Trusted_Connection=True;";
+
+        DbContextOptionsBuilder<AnteikuContext> optionsBuilder = new();
+
+        //optionsBuilder.UseSqlServer(connectionString);
+
+        optionsBuilder.UseInMemoryDatabase("AnteikuDb");
+
+        AnteikuContext db = new AnteikuContext(optionsBuilder.Options);
+
+        db.Users.Add(new UserEntity
         {
-            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=AnteikuDb;Trusted_Connection=True;";
+            UserName= "Test",
+            BirthDate= DateTime.Now,
+            Position = "Admin"
+        });
 
-            DbContextOptionsBuilder<AnteikuContext> optionsBuilder = new();
+        db.SaveChanges();
 
-            optionsBuilder.UseSqlServer(connectionString);
+        List<UserEntity> users = db.Users.ToList();
 
-            AnteikuContext db = new AnteikuContext(optionsBuilder.Options);
-
-            db.Users.Add(new UserEntity
-            {
-                UserName= "Test",
-                BirthDate= DateTime.Now,
-                Position = "Admin"
-            });
-
-            db.SaveChanges();
-
-            List<UserEntity> users = db.Users.ToList();
-
-            foreach (UserEntity user in users)
-            {
-                Console.WriteLine(user.UserName);
-            }
+        foreach (UserEntity user in users)
+        {
+            Console.WriteLine(user.UserName);
         }
     }
 }
