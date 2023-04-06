@@ -1,5 +1,6 @@
 ﻿using Anteiku.DAL;
 using Anteiku.DAL.Entities;
+using Anteiku.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Anteiku.ConsoleUI;
@@ -9,23 +10,23 @@ internal class Program
     //КОММЕНТАРИЙ ДЛЯ ГИТА
     static void Main(string[] args)
     {
-        string connectionString = "Server=(localdb)\\mssqllocaldb;Database=AnteikuDb;Trusted_Connection=True;";
+        UserRepository userRepository = new UserRepository();
 
-        DbContextOptionsBuilder<AnteikuContext> optionsBuilder = new();
+        userRepository.AddUser("Alex", DateTime.Now, 2);
 
-        //optionsBuilder.UseSqlServer(connectionString);
+        var users = userRepository.GetAllUsers();
 
-        optionsBuilder.UseInMemoryDatabase("AnteikuDb");
-
-        AnteikuContext db = new AnteikuContext(optionsBuilder.Options);              
-
-        List<UserEntity> users = db.Users.Include(x=>x.Position).ToList();
-
-        foreach (UserEntity user in users)
+        foreach (var user in users)
         {
             Console.WriteLine(user.UserName);
-            Console.WriteLine(user.BirthDate);
             Console.WriteLine(user.Position.PositionTitle);
+        }
+
+        var positions = userRepository.GetAllPositions();
+
+        foreach (var pos in positions)
+        {
+            Console.WriteLine(pos.PositionTitle);
         }
     }
 }
