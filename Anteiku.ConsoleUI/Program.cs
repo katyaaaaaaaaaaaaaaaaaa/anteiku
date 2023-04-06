@@ -6,6 +6,7 @@ namespace Anteiku.ConsoleUI
 {
     internal class Program
     {
+        //КОММЕНТАРИЙ ДЛЯ ГИТА
         static void Main(string[] args)
         {
             string connectionString = "Server=(localdb)\\mssqllocaldb;Database=AnteikuDb;Trusted_Connection=True;";
