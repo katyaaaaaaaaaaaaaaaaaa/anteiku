@@ -17,29 +17,15 @@ internal class Program
 
         optionsBuilder.UseInMemoryDatabase("AnteikuDb");
 
-        AnteikuContext db = new AnteikuContext(optionsBuilder.Options);
+        AnteikuContext db = new AnteikuContext(optionsBuilder.Options);              
 
-        db.Users.Add(new UserEntity
-        {
-            UserName= "Test",
-            BirthDate= DateTime.Now,
-            Position = "Admin"
-        });
-
-        db.SaveChanges();
-
-        List<UserEntity> users = db.Users.ToList();
+        List<UserEntity> users = db.Users.Include(x=>x.Position).ToList();
 
         foreach (UserEntity user in users)
         {
             Console.WriteLine(user.UserName);
+            Console.WriteLine(user.BirthDate);
+            Console.WriteLine(user.Position.PositionTitle);
         }
     }
 }
-
-//1. Ставите sql server
-//2. Ставите ss management studio
-//3. Читаете про EntityFramework (metanit)
-//4. Трехслойную архтиектуру
-//5. Разбираетесь с доменом - думаете, какие сущности, как таблицы, какие отношения
-//6. Добавить новые ентити в DAL->Entities и потренироваться их выбирать, обновлять, удалять, создавать.

@@ -19,6 +19,7 @@ public class UserEntity
     [Required]
     public DateTime BirthDate { get; set; }
 
-    [Required]
-    public string Position { get; set; }
+    public int PositionId { get; set; }
+
+    public PositionEntity Position { get; set; }
 }
