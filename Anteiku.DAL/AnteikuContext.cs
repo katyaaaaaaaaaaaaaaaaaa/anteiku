@@ -5,15 +5,20 @@ namespace Anteiku.DAL;
 
 public class AnteikuContext : DbContext
 {
-	public AnteikuContext(DbContextOptions<AnteikuContext> options) 
-		: base(options)
-	{
+    public AnteikuContext(DbContextOptions<AnteikuContext> options)
+        : base(options)
+    {
+       // Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
     public DbSet<UserEntity> Users { get; set; }
 
-	public DbSet<PositionEntity> Positions { get; set; }
+    public DbSet<PositionEntity> Positions { get; set; }
+
+    public DbSet<IngridientEntity> Ingridients { get; set; }
+
+    public DbSet<DishEntity> Dishes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -38,11 +43,34 @@ public class AnteikuContext : DbContext
         modelBuilder.Entity<UserEntity>().HasData(
                 new UserEntity
                 {
-                    UserId= 1,
+                    UserId = 1,
                     UserName = "Katya",
                     BirthDate = DateTime.Now,
                     PositionId = 1,
                 }
         );
+
+
+        modelBuilder.Entity<IngridientEntity>().HasData(
+               new IngridientEntity
+               {
+                   IngridientId = 1,
+                   IngridientTitle = "pasta",
+                   IngridientPrice = 5.3,
+               },
+               new IngridientEntity
+               {
+                   IngridientId = 2,
+                   IngridientTitle = "Cheese",
+                   IngridientPrice = 7.4,
+               },
+               new IngridientEntity
+               {
+                   IngridientId = 3,
+                   IngridientTitle = "meet",
+                   IngridientPrice = 10.5,
+               }
+       );        
     }
 }
+

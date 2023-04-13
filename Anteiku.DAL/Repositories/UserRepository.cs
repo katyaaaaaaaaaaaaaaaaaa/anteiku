@@ -5,19 +5,11 @@ namespace Anteiku.DAL.Repositories;
 
 public class UserRepository
 {
-	private AnteikuContext _db;
+	private readonly AnteikuContext _db;
 
-	public UserRepository()
+	public UserRepository(AnteikuContext context)
 	{
-        //string connectionString = "Server=(localdb)\\mssqllocaldb;Database=AnteikuDb;Trusted_Connection=True;";
-
-        DbContextOptionsBuilder<AnteikuContext> optionsBuilder = new();
-
-        //optionsBuilder.UseSqlServer(connectionString);
-
-        optionsBuilder.UseInMemoryDatabase("AnteikuDb");
-
-        _db = new AnteikuContext(optionsBuilder.Options);
+		_db = context;        
     }
 
 	public List<UserEntity> GetAllUsers()
