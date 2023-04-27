@@ -1,9 +1,10 @@
-﻿using Anteiku.DAL.Entities;
+﻿using Anteiku.DAL.Abstractions;
+using Anteiku.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Anteiku.DAL.Repositories;
 
-public class DishRepository
+public class DishRepository : IDishRepository
 {
     private AnteikuContext _db;
 
@@ -14,17 +15,18 @@ public class DishRepository
 
     public List<DishEntity> GetAllDishes()
     {
-        List<DishEntity> dishes = _db.Dishes./*Include(x => x.DishIngridients).*/ToList();
+        List<DishEntity> dishes = _db.Dishes.Include(x => x.Ingridients).ToList();
 
         return dishes;
     }
 
     public DishEntity? GetById(int id)
     {
-        var findedDish = _db.Dishes.FirstOrDefault(x => x.DishId == id);
+        var findedDish = _db.Dishes.Include(x => x.Ingridients).FirstOrDefault(x => x.DishId == id);
 
         return findedDish;
     }
+
     public DishEntity? GetByTitle(string name)
     {
         var findedDish = _db.Dishes.FirstOrDefault(x => x.DishTitle == name);
@@ -37,17 +39,76 @@ public class DishRepository
         return _db.Ingridients.ToList();
     }
 
-    public void AddDishes(string title, double price, List<IngridientEntity> ingridients)
+    public DishEntity CreateDish(string title, double price, List<int> ingridientsIds)
     {
-        var createdDish = new DishEntity 
-        { 
-            DishTitle = title, 
-            DishPrice = price, 
+        List<IngridientEntity> ingridients = new();
+
+        foreach (var ingId in ingridientsIds)
+        {
+            var findedIng = _db.Ingridients.FirstOrDefault(x => x.IngridientId == ingId);
+
+            if (findedIng is null)
+            {
+                throw new ArgumentException($"Ingridient with id {findedIng} not found");
+            }
+
+            ingridients.Add(findedIng);
+        }
+
+        var createdDish = new DishEntity
+        {
+            DishTitle = title,
+            DishPrice = price,
             Ingridients = ingridients
         };
 
         _db.Dishes.Add(createdDish);
 
         _db.SaveChanges();
+
+        return createdDish;
+    }
+
+    public DishEntity UpdateDish(int dishId, string title, double price, List<int> ingridientsIds = null)
+    {
+        var findedDish = GetById(dishId);
+
+        if (findedDish is null)
+        {
+            throw new ArgumentException($"Dish with id {dishId} not found");
+        }
+        
+        findedDish.DishTitle = title;
+        findedDish.DishPrice = price;
+
+        if (ingridientsIds is not null)
+        {
+            //TODO: удалить корректно связи, я посмотрю
+            _db.RemoveRange(findedDish.Ingridients);
+
+            List<IngridientEntity> ingridients = new();
+
+            foreach (var ingId in ingridientsIds)
+            {
+                var findedIng = _db.Ingridients.FirstOrDefault(x => x.IngridientId == ingId);
+
+                if (findedIng is null)
+                {
+                    throw new ArgumentException($"Ingridient with id {findedIng} not found");
+                }
+
+                ingridients.Add(findedIng);
+            }
+            
+            findedDish.Ingridients = ingridients;
+        }
+        else
+        {
+            _db.Update(findedDish);
+        }
+
+        _db.SaveChanges();
+
+        return findedDish;
     }
 }

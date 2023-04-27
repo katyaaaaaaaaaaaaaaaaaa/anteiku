@@ -1,20 +1,39 @@
-﻿using Anteiku.BLL.Models;
-using Anteiku.DAL.Repositories;
+﻿using Anteiku.BLL.Abstractions;
+using Anteiku.BLL.Mappings;
+using Anteiku.BLL.Models;
+using Anteiku.DAL.Abstractions;
 
 namespace Anteiku.BLL.UseCases;
 
-//TODO: UseCases для Dish , напрмер создать, удалить, обновить, поиск по имени
-public class DishService
-{
-    private readonly DishRepository _dishRepository;
 
-    public DishService(DishRepository dishRepository)
+public class DishService : IDishService
+{
+    private readonly IDishRepository _dishRepository;
+
+    public DishService(IDishRepository dishRepository)
     {
         _dishRepository = dishRepository;
     }
 
+    public DishOutput CreateDish(string title, double price, List<int> ingridientsIds)
+    {
+        var createdDish = _dishRepository.CreateDish(title, price, ingridientsIds);
+
+        return createdDish.ToDishOutput();
+    }
+
+    public void DeleteDish(int dishId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<DishOutput> FindDishesByTitle(string title)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
-    /// 
+    /// Метод вернёт список блюда с пагинацией.
     /// </summary>
     /// <param name="page">Номер страницы</param>
     /// <param name="pageSize">Количество элементов на странице</param>
@@ -23,20 +42,18 @@ public class DishService
     {
         //TODO: homework перенести пагинацию на БД
         var result = _dishRepository.GetAllDishes()
-            .Skip((page-1) * pageSize)
+            .Skip((page - 1) * pageSize)
             .Take(pageSize)
-            .Select(x => new DishOutput
-            {
-                Title = x.DishTitle,
-                PriceInUsd = $"{x.DishPrice} $",
-                Ingridients = x.Ingridients
-                                .Select(x => new IngridientsOutput 
-                                {
-                                    Title = x.IngridientTitle
-                                }).ToList(),
-            })
+            .Select(x => x.ToDishOutput())
             .ToList();
 
         return result;
+    }
+
+    public DishOutput UpdateDish(int dishId, string title, double price, List<int> ingridientsIds = null)
+    {
+        var createdDish = _dishRepository.UpdateDish(dishId, title, price, ingridientsIds);
+
+        return createdDish.ToDishOutput();
     }
 }
