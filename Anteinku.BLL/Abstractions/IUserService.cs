@@ -1,24 +1,21 @@
-﻿using Anteiku.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Anteiku.BLL.Models;
+using Anteiku.DAL.Entities;
 
-namespace Anteiku.BLL.Abstractions
+namespace Anteiku.BLL.Abstractions;
+
+public interface IUserService
 {
-    public interface IUserService
-    {
-        void AddUser(string name, DateTime birthDate, int positionId);
+    void AddUser(string name, DateTime birthDate, int positionId);
 
-        List<PositionEntity> GetAllPositions();
+    List<PositionOutput> GetAllPositions();
 
-        List<UserEntity> GetAllUsers();
+    List<UserOutput> GetAllUsers();
 
-        UserEntity? GetById(int id);
+    UserOutput? GetById(int id);
 
-        UserEntity? GetByName(string name);
-        int GetUsersCount();
-        void DelUsers(int userId);
-    }
+    UserOutput? GetByName(string name);
+
+    int GetUsersCount();
+
+    void DelUser(int userId);
 }

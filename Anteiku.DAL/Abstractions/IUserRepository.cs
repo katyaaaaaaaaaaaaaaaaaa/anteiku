@@ -13,6 +13,8 @@ public interface IUserRepository
     UserEntity? GetById(int id);
 
     UserEntity? GetByName(string name);
+
     int GetUsersCount();
-    void DelUsers(int userId);
+
+    void DelUser(int userId);
 }

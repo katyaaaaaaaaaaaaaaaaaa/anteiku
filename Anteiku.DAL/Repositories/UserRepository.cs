@@ -22,14 +22,14 @@ public class UserRepository : IUserRepository
 
     public UserEntity? GetById(int id)
     {
-        var findedUser = _db.Users.FirstOrDefault(x => x.UserId == id);
+        var findedUser = _db.Users.Include(x => x.Position).FirstOrDefault(x => x.UserId == id);
 
         return findedUser;
     }
 
     public UserEntity? GetByName(string name)
     {
-        var findedUser = _db.Users.FirstOrDefault(x => x.UserName == name);
+        var findedUser = _db.Users.Include(x=>x.Position).FirstOrDefault(x => x.UserName == name);
 
         return findedUser;
     }
@@ -48,32 +48,22 @@ public class UserRepository : IUserRepository
         return _db.Positions.ToList();
     }
 
-
     public int GetUsersCount()
     {
-        int count = 0;
-        for (int i = 0; i < _db.Users.ToList().Count; i++)
-        {
-            count ++;
-        }
-        return count;
+        return _db.Users.Count();
     }
 
-    public void DelUsers(int dishId)
+    public void DelUser(int userId)
     {
-        if (_db.Users.ToList().Count > 0)
+        var user = GetById(userId);
+
+        //TODO: бросать исключение если юзер не найден
+
+        if (user is not null)
         {
-            for (int i = 0; i < _db.Users.ToList().Count; i++)
-            {
-                UserEntity user = _db.Users.ToList()[i] as UserEntity;
-                if (user != null)
-                {
-                    _db.Users.Remove(user);
-                }
-            }
-        }
-        _db.SaveChanges();
+            _db.Users.Remove(user);
+
+            _db.SaveChanges();
+        }        
     }
-
-
 }

@@ -1,18 +1,10 @@
-﻿using Anteiku.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Anteiku.BLL.Models;
 
-namespace Anteiku.BLL.Models
+public class UserOutput
 {
-    public class UserOutput
-    {
-        public string UserName { get; set; } = string.Empty;
-        public DateTime BirthDate { get; set; } = new DateTime();
-        public int PositionId { get; set; } = 0;
+    public string UserName { get; set; } = string.Empty;
 
-        public PositionEntity Position { get; set; } = new PositionEntity();
-    }
+    public DateTime BirthDate { get; set; } = new DateTime();
+
+    public string PositionTitle { get; set; } = string.Empty;
 }
