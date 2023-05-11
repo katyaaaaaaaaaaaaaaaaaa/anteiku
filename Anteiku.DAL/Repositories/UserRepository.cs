@@ -47,4 +47,33 @@ public class UserRepository : IUserRepository
     {
         return _db.Positions.ToList();
     }
+
+
+    public int GetUsersCount()
+    {
+        int count = 0;
+        for (int i = 0; i < _db.Users.ToList().Count; i++)
+        {
+            count ++;
+        }
+        return count;
+    }
+
+    public void DelUsers(int dishId)
+    {
+        if (_db.Users.ToList().Count > 0)
+        {
+            for (int i = 0; i < _db.Users.ToList().Count; i++)
+            {
+                UserEntity user = _db.Users.ToList()[i] as UserEntity;
+                if (user != null)
+                {
+                    _db.Users.Remove(user);
+                }
+            }
+        }
+        _db.SaveChanges();
+    }
+
+
 }
