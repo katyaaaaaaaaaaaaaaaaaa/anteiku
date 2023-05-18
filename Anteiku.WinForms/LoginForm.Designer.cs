@@ -37,7 +37,7 @@
             this.loginButton.Location = new System.Drawing.Point(155, 111);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(231, 39);
-            this.loginButton.TabIndex = 0;
+            this.loginButton.TabIndex = 1;
             this.loginButton.Text = "ВОЙТИ";
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
@@ -48,7 +48,7 @@
             this.loginTextbox.Name = "loginTextbox";
             this.loginTextbox.PlaceholderText = "Введите имя пользователя..";
             this.loginTextbox.Size = new System.Drawing.Size(231, 27);
-            this.loginTextbox.TabIndex = 1;
+            this.loginTextbox.TabIndex = 0;
             // 
             // LoginForm
             // 

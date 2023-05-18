@@ -2,14 +2,6 @@
 using Anteiku.BLL.Mappings;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Abstractions;
-using Anteiku.DAL.Entities;
-using Anteiku.DAL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Anteiku.BLL.UseCases;
 
@@ -72,5 +64,12 @@ public class UserService : IUserService
     public void DelUser(int userId)
     {
         _userRepository.DelUser(userId);
-    }   
+    }
+
+    public int GetRoleIdByRoleName(string roleName)
+    {
+        //TODO: добавить проверку на пустоту и null - roleName
+
+        return _userRepository.GetRoleIdByRoleName(roleName);
+    }
 }

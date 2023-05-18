@@ -30,29 +30,34 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.userOperationTabpage = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.positionsCombobox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.birthdayDatetimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.addUserButton = new System.Windows.Forms.Button();
             this.num = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.kitchenTabpage = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl.SuspendLayout();
             this.userOperationTabpage.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.kitchenTabpage.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -70,19 +75,9 @@
             // 
             // userOperationTabpage
             // 
-            this.userOperationTabpage.Controls.Add(this.num);
-            this.userOperationTabpage.Controls.Add(this.label5);
-            this.userOperationTabpage.Controls.Add(this.label4);
-            this.userOperationTabpage.Controls.Add(this.textBox4);
-            this.userOperationTabpage.Controls.Add(this.textBox3);
-            this.userOperationTabpage.Controls.Add(this.textBox2);
-            this.userOperationTabpage.Controls.Add(this.textBox1);
-            this.userOperationTabpage.Controls.Add(this.label3);
-            this.userOperationTabpage.Controls.Add(this.label2);
-            this.userOperationTabpage.Controls.Add(this.label1);
-            this.userOperationTabpage.Controls.Add(this.button5);
-            this.userOperationTabpage.Controls.Add(this.button4);
-            this.userOperationTabpage.Controls.Add(this.button3);
+            this.userOperationTabpage.Controls.Add(this.groupBox3);
+            this.userOperationTabpage.Controls.Add(this.groupBox2);
+            this.userOperationTabpage.Controls.Add(this.groupBox1);
             this.userOperationTabpage.Location = new System.Drawing.Point(4, 29);
             this.userOperationTabpage.Name = "userOperationTabpage";
             this.userOperationTabpage.Padding = new System.Windows.Forms.Padding(3);
@@ -91,10 +86,85 @@
             this.userOperationTabpage.Text = "Управление пользователями";
             this.userOperationTabpage.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.positionsCombobox);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.birthdayDatetimePicker);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.addUserButton);
+            this.groupBox1.Location = new System.Drawing.Point(42, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(838, 125);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Создание пользователя";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(11, 53);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(181, 27);
+            this.textBox1.TabIndex = 6;
+            // 
+            // positionsCombobox
+            // 
+            this.positionsCombobox.FormattingEnabled = true;
+            this.positionsCombobox.Location = new System.Drawing.Point(465, 49);
+            this.positionsCombobox.Name = "positionsCombobox";
+            this.positionsCombobox.Size = new System.Drawing.Size(151, 28);
+            this.positionsCombobox.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Введите имя";
+            // 
+            // birthdayDatetimePicker
+            // 
+            this.birthdayDatetimePicker.Location = new System.Drawing.Point(241, 50);
+            this.birthdayDatetimePicker.Name = "birthdayDatetimePicker";
+            this.birthdayDatetimePicker.Size = new System.Drawing.Size(173, 27);
+            this.birthdayDatetimePicker.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(241, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Введите дату рождения";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(465, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(144, 20);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Введите должность";
+            // 
+            // addUserButton
+            // 
+            this.addUserButton.Location = new System.Drawing.Point(669, 46);
+            this.addUserButton.Name = "addUserButton";
+            this.addUserButton.Size = new System.Drawing.Size(134, 31);
+            this.addUserButton.TabIndex = 0;
+            this.addUserButton.Text = "Добавить";
+            this.addUserButton.UseVisualStyleBackColor = true;
+            this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
+            // 
             // num
             // 
             this.num.AutoSize = true;
-            this.num.Location = new System.Drawing.Point(509, 302);
+            this.num.Location = new System.Drawing.Point(208, 49);
             this.num.Name = "num";
             this.num.Size = new System.Drawing.Size(0, 20);
             this.num.TabIndex = 12;
@@ -102,7 +172,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(304, 302);
+            this.label5.Location = new System.Drawing.Point(22, 49);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(180, 20);
             this.label5.TabIndex = 11;
@@ -111,7 +181,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(501, 136);
+            this.label4.Location = new System.Drawing.Point(22, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(160, 20);
             this.label4.TabIndex = 10;
@@ -119,88 +189,20 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(509, 159);
+            this.textBox4.Location = new System.Drawing.Point(22, 57);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(125, 27);
+            this.textBox4.Size = new System.Drawing.Size(160, 27);
             this.textBox4.TabIndex = 9;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(720, 55);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(125, 27);
-            this.textBox3.TabIndex = 8;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(509, 55);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 27);
-            this.textBox2.TabIndex = 7;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(280, 55);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 27);
-            this.textBox1.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(710, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(144, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Введите должность";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(488, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Введите дату рождения";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Введите имя";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(25, 269);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(202, 53);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Количество";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(25, 146);
+            this.button4.Location = new System.Drawing.Point(288, 49);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(202, 53);
+            this.button4.Size = new System.Drawing.Size(114, 37);
             this.button4.TabIndex = 1;
             this.button4.Text = "Удалить";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(25, 29);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(202, 53);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Добавить";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // kitchenTabpage
             // 
@@ -262,6 +264,29 @@
             this.tabPage3.Text = "Оформление отчетов";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.num);
+            this.groupBox2.Location = new System.Drawing.Point(496, 155);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(384, 116);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Статистика";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Location = new System.Drawing.Point(42, 155);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(433, 116);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Удаление пользователей";
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -272,9 +297,14 @@
             this.Text = "Anteiku - ГЛАВНОЕ МЕНЮ";
             this.tabControl.ResumeLayout(false);
             this.userOperationTabpage.ResumeLayout(false);
-            this.userOperationTabpage.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.kitchenTabpage.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -285,16 +315,13 @@
         private TabPage userOperationTabpage;
         private TabPage kitchenTabpage;
         private TabPage tabPage1;
-        private Button button3;
+        private Button addUserButton;
         private Button button2;
         private Button button1;
-        private TextBox textBox3;
-        private TextBox textBox2;
         private TextBox textBox1;
         private Label label3;
         private Label label2;
         private Label label1;
-        private Button button5;
         private Button button4;
         private TabPage tabPage2;
         private TabPage tabPage3;
@@ -302,5 +329,10 @@
         private TextBox textBox4;
         private Label num;
         private Label label5;
+        private DateTimePicker birthdayDatetimePicker;
+        private GroupBox groupBox1;
+        private ComboBox positionsCombobox;
+        private GroupBox groupBox3;
+        private GroupBox groupBox2;
     }
 }

@@ -66,4 +66,16 @@ public class UserRepository : IUserRepository
             _db.SaveChanges();
         }        
     }
+
+    public int GetRoleIdByRoleName(string roleName)
+    {
+        var position = _db.Positions.FirstOrDefault(x => x.PositionTitle == roleName);
+
+        if (position is null)
+        {
+            //TODO: бросать исключение если должность не найдена
+        }
+
+        return position.PositionId;
+    }
 }

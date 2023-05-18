@@ -18,4 +18,6 @@ public interface IUserService
     int GetUsersCount();
 
     void DelUser(int userId);
+
+    int GetRoleIdByRoleName(string roleName);
 }

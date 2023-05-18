@@ -16,5 +16,7 @@ public interface IUserRepository
 
     int GetUsersCount();
 
+    int GetRoleIdByRoleName(string roleName);
+
     void DelUser(int userId);
 }
