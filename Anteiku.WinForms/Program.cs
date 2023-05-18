@@ -7,8 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anteiku.WinForms
 {
+
     internal static class Program
     {
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Anteiku.WinForms
             //optionsBuilder.UseInMemoryDatabase("AnteikuDb");
 
             AnteikuContext _db = new AnteikuContext(optionsBuilder.Options);
-
+  
             #endregion
 
             #region REPOSITORIES
