@@ -29,9 +29,21 @@ public partial class LoginForm : Form
         {
             MainMenuForm mainMenuForm = new MainMenuForm(user.PositionTitle, _userService);
 
+            mainMenuForm.FormClosed += Action;
+
             this.Hide();
 
             mainMenuForm.Show();
         }
+    }
+
+    private void Action(object sender, EventArgs e)
+    {
+        this.Show();
+    }
+
+    private void exitButton_Click(object sender, EventArgs e)
+    {
+        this.Close();
     }
 }

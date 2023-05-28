@@ -30,6 +30,7 @@
         {
             this.loginButton = new System.Windows.Forms.Button();
             this.loginTextbox = new System.Windows.Forms.TextBox();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // loginButton
@@ -50,11 +51,22 @@
             this.loginTextbox.Size = new System.Drawing.Size(231, 27);
             this.loginTextbox.TabIndex = 0;
             // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(155, 154);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(231, 39);
+            this.exitButton.TabIndex = 2;
+            this.exitButton.Text = "ВЫХОД";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 216);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.loginTextbox);
             this.Controls.Add(this.loginButton);
             this.Name = "LoginForm";
@@ -68,5 +80,6 @@
 
         private Button loginButton;
         private TextBox loginTextbox;
+        private Button exitButton;
     }
 }

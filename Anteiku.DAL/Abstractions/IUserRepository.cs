@@ -19,4 +19,7 @@ public interface IUserRepository
     int GetRoleIdByRoleName(string roleName);
 
     void DelUser(int userId);
+
+    //TODO: добавить остальные поля
+    void UpdateUser(int id, string userName);
 }

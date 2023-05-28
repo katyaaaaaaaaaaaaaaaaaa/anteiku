@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Anteiku.DAL.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Anteiku.DAL.Entities;
@@ -18,6 +19,12 @@ public class UserEntity
 
     [Required]
     public DateTime BirthDate { get; set; }
+
+    public ScheduleDays ScheduleDays { get; set; }
+
+    public ScheduleTime ScheduleTime { get; set; }
+
+    public string? Comment { get; set; }
 
     public int PositionId { get; set; }
 

@@ -12,10 +12,22 @@ public static class UserEntityToUserOutput
 
         UserOutput userOutput = new()
         {
+            Id = userEntity.UserId,
             UserName = userEntity.UserName,
             BirthDate = userEntity.BirthDate,
-            PositionTitle = userEntity.Position.PositionTitle
+            ScheduleTime = userEntity.ScheduleTime.ToString(),
+            ScheduleDays = userEntity.ScheduleDays.ToString(),
+            PositionTitle = userEntity.Position.PositionTitle,            
         };
+
+        if (string.IsNullOrWhiteSpace(userEntity.Comment))
+        {
+            userOutput.Comment = "No comment";
+        }
+        else
+        {
+            userOutput.Comment = userEntity.Comment;
+        }
 
         return userOutput;
     }

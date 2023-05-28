@@ -72,4 +72,10 @@ public class UserService : IUserService
 
         return _userRepository.GetRoleIdByRoleName(roleName);
     }
+
+    public void UpdateUser(int id, string userName)
+    {
+        //TODO: добавить проверку на пустоту и null - roleName
+        _userRepository.UpdateUser(id, userName);
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using Anteiku.DAL.Entities;
+using Anteiku.DAL.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Anteiku.DAL;
@@ -8,7 +9,7 @@ public class AnteikuContext : DbContext
     public AnteikuContext(DbContextOptions<AnteikuContext> options)
         : base(options)
     {
-       // Database.EnsureDeleted();
+        //Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
@@ -44,7 +45,9 @@ public class AnteikuContext : DbContext
                 new UserEntity
                 {
                     UserId = 1,
-                    UserName = "Katya",
+                    UserName = "Admin",
+                    ScheduleDays = ScheduleDays.FIVEDAY,
+                    ScheduleTime = ScheduleTime.START_8_00_END_17_00,
                     BirthDate = DateTime.Now,
                     PositionId = 1,
                 }

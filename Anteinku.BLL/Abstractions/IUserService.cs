@@ -20,4 +20,7 @@ public interface IUserService
     void DelUser(int userId);
 
     int GetRoleIdByRoleName(string roleName);
+
+    //TODO: добавить остальные поля
+    void UpdateUser(int id, string userName);
 }

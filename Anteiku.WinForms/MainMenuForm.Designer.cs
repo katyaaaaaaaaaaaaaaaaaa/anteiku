@@ -30,6 +30,13 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.userOperationTabpage = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.num = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.positionsCombobox = new System.Windows.Forms.ComboBox();
@@ -38,26 +45,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.addUserButton = new System.Windows.Forms.Button();
-            this.num = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.kitchenTabpage = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
+            this.usersDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.editUserTextBox = new System.Windows.Forms.TextBox();
+            this.editUserButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.userOperationTabpage.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.kitchenTabpage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -75,6 +79,9 @@
             // 
             // userOperationTabpage
             // 
+            this.userOperationTabpage.Controls.Add(this.label6);
+            this.userOperationTabpage.Controls.Add(this.editUserButton);
+            this.userOperationTabpage.Controls.Add(this.editUserTextBox);
             this.userOperationTabpage.Controls.Add(this.groupBox3);
             this.userOperationTabpage.Controls.Add(this.groupBox2);
             this.userOperationTabpage.Controls.Add(this.groupBox1);
@@ -85,6 +92,72 @@
             this.userOperationTabpage.TabIndex = 0;
             this.userOperationTabpage.Text = "Управление пользователями";
             this.userOperationTabpage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Location = new System.Drawing.Point(42, 155);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(433, 116);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Удаление пользователей";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(288, 49);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(114, 37);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Удалить";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(22, 57);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(160, 27);
+            this.textBox4.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(160, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Введите Id работника";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.num);
+            this.groupBox2.Location = new System.Drawing.Point(496, 155);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(384, 116);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Статистика";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(180, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Количество работников:";
+            // 
+            // num
+            // 
+            this.num.AutoSize = true;
+            this.num.Location = new System.Drawing.Point(208, 49);
+            this.num.Name = "num";
+            this.num.Size = new System.Drawing.Size(0, 20);
+            this.num.TabIndex = 12;
             // 
             // groupBox1
             // 
@@ -153,7 +226,7 @@
             // 
             // addUserButton
             // 
-            this.addUserButton.Location = new System.Drawing.Point(669, 46);
+            this.addUserButton.Location = new System.Drawing.Point(662, 46);
             this.addUserButton.Name = "addUserButton";
             this.addUserButton.Size = new System.Drawing.Size(134, 31);
             this.addUserButton.TabIndex = 0;
@@ -161,52 +234,9 @@
             this.addUserButton.UseVisualStyleBackColor = true;
             this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
             // 
-            // num
-            // 
-            this.num.AutoSize = true;
-            this.num.Location = new System.Drawing.Point(208, 49);
-            this.num.Name = "num";
-            this.num.Size = new System.Drawing.Size(0, 20);
-            this.num.TabIndex = 12;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(180, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Количество работников:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(160, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Введите Id работника";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(22, 57);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(160, 27);
-            this.textBox4.TabIndex = 9;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(288, 49);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(114, 37);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Удалить";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // kitchenTabpage
             // 
-            this.kitchenTabpage.Controls.Add(this.button2);
+            this.kitchenTabpage.Controls.Add(this.usersDataGridView);
             this.kitchenTabpage.Location = new System.Drawing.Point(4, 29);
             this.kitchenTabpage.Name = "kitchenTabpage";
             this.kitchenTabpage.Padding = new System.Windows.Forms.Padding(3);
@@ -215,14 +245,15 @@
             this.kitchenTabpage.Text = "График работы";
             this.kitchenTabpage.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // usersDataGridView
             // 
-            this.button2.Location = new System.Drawing.Point(184, 139);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 29);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.usersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.usersDataGridView.Location = new System.Drawing.Point(6, 6);
+            this.usersDataGridView.Name = "usersDataGridView";
+            this.usersDataGridView.RowHeadersWidth = 51;
+            this.usersDataGridView.RowTemplate.Height = 29;
+            this.usersDataGridView.Size = new System.Drawing.Size(909, 309);
+            this.usersDataGridView.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -264,28 +295,31 @@
             this.tabPage3.Text = "Оформление отчетов";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // editUserTextBox
             // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.num);
-            this.groupBox2.Location = new System.Drawing.Point(496, 155);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(384, 116);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Статистика";
+            this.editUserTextBox.Location = new System.Drawing.Point(53, 317);
+            this.editUserTextBox.Name = "editUserTextBox";
+            this.editUserTextBox.Size = new System.Drawing.Size(160, 27);
+            this.editUserTextBox.TabIndex = 18;
             // 
-            // groupBox3
+            // editUserButton
             // 
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.textBox4);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Location = new System.Drawing.Point(42, 155);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(433, 116);
-            this.groupBox3.TabIndex = 17;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Удаление пользователей";
+            this.editUserButton.Location = new System.Drawing.Point(237, 317);
+            this.editUserButton.Name = "editUserButton";
+            this.editUserButton.Size = new System.Drawing.Size(146, 29);
+            this.editUserButton.TabIndex = 19;
+            this.editUserButton.Text = "Редактировать";
+            this.editUserButton.UseVisualStyleBackColor = true;
+            this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(53, 294);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(160, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Введите Id работника";
             // 
             // MainMenuForm
             // 
@@ -295,16 +329,19 @@
             this.Controls.Add(this.tabControl);
             this.Name = "MainMenuForm";
             this.Text = "Anteiku - ГЛАВНОЕ МЕНЮ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainMenuForm_FormClosed);
             this.tabControl.ResumeLayout(false);
             this.userOperationTabpage.ResumeLayout(false);
+            this.userOperationTabpage.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.kitchenTabpage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,7 +353,6 @@
         private TabPage kitchenTabpage;
         private TabPage tabPage1;
         private Button addUserButton;
-        private Button button2;
         private Button button1;
         private TextBox textBox1;
         private Label label3;
@@ -334,5 +370,9 @@
         private ComboBox positionsCombobox;
         private GroupBox groupBox3;
         private GroupBox groupBox2;
+        private DataGridView usersDataGridView;
+        private Label label6;
+        private Button editUserButton;
+        private TextBox editUserTextBox;
     }
 }

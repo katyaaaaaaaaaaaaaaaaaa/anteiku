@@ -78,4 +78,15 @@ public class UserRepository : IUserRepository
 
         return position.PositionId;
     }
+
+    public void UpdateUser(int id, string userName)
+    {
+        var user = GetById(id);
+
+        user.UserName = userName;
+
+        _db.Update(user);
+
+        _db.SaveChanges();
+    }
 }
