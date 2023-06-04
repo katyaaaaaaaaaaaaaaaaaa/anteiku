@@ -1,5 +1,6 @@
 ﻿using Anteiku.DAL.Abstractions;
 using Anteiku.DAL.Entities;
+using Anteiku.DAL.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Anteiku.DAL.Repositories;
@@ -34,9 +35,9 @@ public class UserRepository : IUserRepository
         return findedUser;
     }
 
-    public void AddUser(string name, DateTime birthDate, int positionId)
+    public void AddUser(string name, DateTime birthDate, int positionId, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
     {
-        var createdUser = new UserEntity { UserName = name, BirthDate = birthDate, PositionId = positionId };
+        var createdUser = new UserEntity { UserName = name, BirthDate = birthDate, PositionId = positionId, Comment = comment, ScheduleDays = scheduleDays, ScheduleTime = scheduleTime };
 
         _db.Users.Add(createdUser);
 
@@ -79,11 +80,16 @@ public class UserRepository : IUserRepository
         return position.PositionId;
     }
 
-    public void UpdateUser(int id, string userName)
+    public void UpdateUser(int id, string userName, DateTime birthday, string positionTitle, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
     {
         var user = GetById(id);
 
         user.UserName = userName;
+        //user.Position = positionTitle;
+        user.BirthDate = birthday;
+        user.ScheduleDays = scheduleDays;
+        user.ScheduleTime = scheduleTime;
+        user.Comment= comment;
 
         _db.Update(user);
 

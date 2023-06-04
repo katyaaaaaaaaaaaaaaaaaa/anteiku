@@ -1,10 +1,11 @@
 ﻿using Anteiku.DAL.Entities;
+using Anteiku.DAL.Enums;
 
 namespace Anteiku.DAL.Abstractions;
 
 public interface IUserRepository
 {
-    void AddUser(string name, DateTime birthDate, int positionId);
+    void AddUser(string name, DateTime birthDate, int positionId, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime);
 
     List<PositionEntity> GetAllPositions();
 
@@ -21,5 +22,5 @@ public interface IUserRepository
     void DelUser(int userId);
 
     //TODO: добавить остальные поля
-    void UpdateUser(int id, string userName);
+    void UpdateUser(int id, string userName, DateTime birthday, string positionTitle, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime);
 }

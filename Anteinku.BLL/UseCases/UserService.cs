@@ -2,6 +2,7 @@
 using Anteiku.BLL.Mappings;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Abstractions;
+using Anteiku.DAL.Enums;
 
 namespace Anteiku.BLL.UseCases;
 
@@ -39,17 +40,17 @@ public class UserService : IUserService
         return user;
     }
 
-    public void AddUser(string name, DateTime birthDate, int positionId)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            throw new ArgumentNullException(nameof(name), $"Имя пользователя не может быть пустым.");
-        }
+    //public void AddUser(string name, DateTime birthDate, int positionId, string comment, string scheduleDays, string scheduleTime)
+    //{
+    //    if (string.IsNullOrWhiteSpace(name))
+    //    {
+    //        throw new ArgumentNullException(nameof(name), $"Имя пользователя не может быть пустым.");
+    //    }
 
-        _userRepository.AddUser(name, birthDate, positionId);
+    //    _userRepository.AddUser(name, birthDate, positionId, comment, scheduleDays, scheduleTime);
 
-        //отправить письмо на почту например
-    }
+    //    //отправить письмо на почту например
+    //}
 
     public List<PositionOutput> GetAllPositions()
     {
@@ -73,9 +74,22 @@ public class UserService : IUserService
         return _userRepository.GetRoleIdByRoleName(roleName);
     }
 
-    public void UpdateUser(int id, string userName)
+    public void UpdateUser(int id, string userName, DateTime birthday, string positionTitle, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
     {
         //TODO: добавить проверку на пустоту и null - roleName
-        _userRepository.UpdateUser(id, userName);
+        _userRepository.UpdateUser(id,  userName,  birthday,  positionTitle,  comment,  scheduleDays,  scheduleTime);
+    }
+
+    public void AddUser(string name, DateTime birthDate, int positionId, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
+    {
+        //throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentNullException(nameof(name), $"Имя пользователя не может быть пустым.");
+        }
+
+        _userRepository.AddUser(name, birthDate, positionId, comment, scheduleDays, scheduleTime);
+
+        //отправить письмо на почту например
     }
 }

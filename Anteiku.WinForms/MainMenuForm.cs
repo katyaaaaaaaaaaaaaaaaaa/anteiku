@@ -1,5 +1,6 @@
 ﻿using Anteiku.BLL.Abstractions;
 using Anteiku.BLL.Models;
+using Anteiku.DAL.Enums;
 using System.Data;
 
 namespace Anteiku.WinForms;
@@ -42,6 +43,14 @@ public partial class MainMenuForm : Form
 
         var positions = _userService.GetAllPositions();
         positionsCombobox.Items.AddRange(positions.Select(x=>x.PositionTitle).ToArray());
+
+        //var days = Enum.GetValues(typeof(ScheduleDays));
+        //SheduleDays_comboBox.Items.AddRange(days);
+
+        //var time = Enum.GetValues(typeof(ScheduleTime));
+        //SheduleTime_comboBox.Items.AddRange(time.Select(x => x.time).ToArray());
+
+
 
         num.Text = Convert.ToString(_userService.GetUsersCount());
 
@@ -93,9 +102,16 @@ public partial class MainMenuForm : Form
 
         var roleAsString =  positionsCombobox.Text;
 
+        string comment = textBox2.Text;
+
+        var days = SheduleDays_comboBox.DataSource;
+       
+        var time = SheduleTime_comboBox.DataSource;
+
+
         int posId = _userService.GetRoleIdByRoleName(roleAsString);
 
-        _userService.AddUser(name, birthday, posId);
+        _userService.AddUser(name, birthday, posId, comment, (ScheduleDays)days, (ScheduleTime)time);
 
         UsersChanged.Invoke();
     }
@@ -123,5 +139,15 @@ public partial class MainMenuForm : Form
     {
         this.Show();
         UsersChanged.Invoke();
+    }
+
+    private void SheduleDays_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void SheduleTime_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
