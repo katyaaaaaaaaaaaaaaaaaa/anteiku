@@ -6,7 +6,8 @@ namespace Anteiku.BLL.Abstractions;
 
 public interface IUserService
 {
-    void AddUser(string name, DateTime birthDate, int positionId, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime);
+    void AddUser(string name, DateTime birthDate, int positionId, 
+        string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime);
 
     List<PositionOutput> GetAllPositions();
 
@@ -22,6 +23,8 @@ public interface IUserService
 
     int GetRoleIdByRoleName(string roleName);
 
-    //TODO: добавить остальные поля
-    void UpdateUser(int id, string userName, DateTime birthday, string positionTitle, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime);
+    //TODO: добавить остальные поля и position id
+    void UpdateUser(int id, string userName, DateTime birthday, 
+                    string positionTitle, string comment, 
+                    ScheduleDays scheduleDays, ScheduleTime scheduleTime);
 }

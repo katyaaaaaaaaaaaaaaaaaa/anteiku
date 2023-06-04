@@ -1,6 +1,8 @@
 ﻿using Anteiku.BLL.Abstractions;
+using Anteiku.BLL.Helpers;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Enums;
+using Anteiku.WinForms.Models;
 using System.Data;
 
 namespace Anteiku.WinForms;
@@ -18,7 +20,7 @@ public partial class MainMenuForm : Form
     public MainMenuForm()
     {
         InitializeComponent();
-        ((Control)this.tabPage1).Enabled = false;
+        ((Control)this.productsTabpage).Enabled = false;
     }
 
     public MainMenuForm(string positionTitle, IUserService userService)
@@ -38,19 +40,25 @@ public partial class MainMenuForm : Form
             ((Control)this.kitchenTabpage).Enabled = false;
         }
 
-        ((Control)this.tabPage1).Enabled = false;
+        ((Control)this.productsTabpage).Enabled = false;
         _userService = userService;
 
         var positions = _userService.GetAllPositions();
         positionsCombobox.Items.AddRange(positions.Select(x=>x.PositionTitle).ToArray());
 
-        //var days = Enum.GetValues(typeof(ScheduleDays));
-        //SheduleDays_comboBox.Items.AddRange(days);
+        var days = Enum.GetValues(typeof(ScheduleDays))
+            .Cast<ScheduleDays>()
+            .Select(x=> new DaysViewModel(x))
+            .ToList();
 
-        //var time = Enum.GetValues(typeof(ScheduleTime));
-        //SheduleTime_comboBox.Items.AddRange(time.Select(x => x.time).ToArray());
+        SheduleDays_comboBox.Items.AddRange(days.Select(x=>x.DayAsString).ToArray());
 
+        var time = Enum.GetValues(typeof(ScheduleTime))
+            .Cast<ScheduleTime>()
+            .Select(x => new TimeViewModel(x))
+            .ToList();
 
+        SheduleTime_comboBox.Items.AddRange(time.Select(x => x.TimeAsString).ToArray());
 
         num.Text = Convert.ToString(_userService.GetUsersCount());
 
@@ -95,25 +103,50 @@ public partial class MainMenuForm : Form
 
         if (string.IsNullOrEmpty(name))
         {
-            //TODO: проверять все вводимые данные на каждой форме и показывать MessageBox
+            MessageBox.Show("Имя не может быть пустым!");
+            return;
         }
 
         DateTime birthday = birthdayDatetimePicker.Value;
 
         var roleAsString =  positionsCombobox.Text;
 
-        string comment = textBox2.Text;
-
-        var days = SheduleDays_comboBox.DataSource;
-       
-        var time = SheduleTime_comboBox.DataSource;
-
+        if (string.IsNullOrEmpty(roleAsString))
+        {
+            MessageBox.Show("Не выбрана должность!");
+            return;
+        }
 
         int posId = _userService.GetRoleIdByRoleName(roleAsString);
+         
+        string? day = SheduleDays_comboBox.Text;
 
-        _userService.AddUser(name, birthday, posId, comment, (ScheduleDays)days, (ScheduleTime)time);
+        if (string.IsNullOrEmpty(day))
+        {
+            MessageBox.Show("Не выбрано расписание!");
+            return;
+        }
+
+        var time = SheduleTime_comboBox.Text;
+
+        if (string.IsNullOrEmpty(time))
+        {
+            MessageBox.Show("Не выбрано расписание!");
+            return;
+        }
+
+        string comment = comment_textbox.Text;
+
+        _userService.AddUser(name, 
+            birthday, 
+            posId, 
+            comment, 
+            ScheduleHelper.GetDayAsEnumFromString(day),
+            ScheduleHelper.GetTimeAsEnumFromString(time));
 
         UsersChanged.Invoke();
+
+        MessageBox.Show("Пользователь добавлен!");
     }
 
     private void MainMenuForm_FormClosed(object sender, FormClosedEventArgs e)

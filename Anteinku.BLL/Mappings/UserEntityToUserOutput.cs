@@ -1,4 +1,5 @@
-﻿using Anteiku.BLL.Models;
+﻿using Anteiku.BLL.Helpers;
+using Anteiku.BLL.Models;
 using Anteiku.DAL.Entities;
 
 namespace Anteiku.BLL.Mappings;
@@ -15,8 +16,8 @@ public static class UserEntityToUserOutput
             Id = userEntity.UserId,
             UserName = userEntity.UserName,
             BirthDate = userEntity.BirthDate,
-            ScheduleTime = userEntity.ScheduleTime.ToString(),
-            ScheduleDays = userEntity.ScheduleDays.ToString(),
+            ScheduleTime = ScheduleHelper.GetTimeAsStringFromEnum(userEntity.ScheduleTime),
+            ScheduleDays = ScheduleHelper.GetDayAsStringFromEnum(userEntity.ScheduleDays),
             PositionTitle = userEntity.Position.PositionTitle,            
         };
 
