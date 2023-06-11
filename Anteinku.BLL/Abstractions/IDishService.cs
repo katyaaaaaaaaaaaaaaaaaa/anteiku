@@ -4,6 +4,8 @@ namespace Anteiku.BLL.Abstractions;
 
 public interface IDishService
 {
+    List<IngridientOutput> GetAllIngridients();
+
     List<DishOutput> GetDishesWithPagination(int page, int pageSize);
 
     DishOutput CreateDish(string title, double price, List<int> ingridientsIds);

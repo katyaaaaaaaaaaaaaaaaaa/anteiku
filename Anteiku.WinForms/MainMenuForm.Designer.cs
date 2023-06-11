@@ -55,13 +55,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.addUserButton = new System.Windows.Forms.Button();
-            this.kitchenTabpage = new System.Windows.Forms.TabPage();
+            this.WorkersTabpage = new System.Windows.Forms.TabPage();
             this.usersDataGridView = new System.Windows.Forms.DataGridView();
             this.productsTabpage = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.zakup_button = new System.Windows.Forms.Button();
+            this.ingridiensGridView = new System.Windows.Forms.DataGridView();
+            this.ordersTabpage = new System.Windows.Forms.TabPage();
             this.historyTabpage = new System.Windows.Forms.TabPage();
             this.reportsTabpage = new System.Windows.Forms.TabPage();
-            this.ordersTabpage = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.userOperationTabpage.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -69,15 +70,16 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.kitchenTabpage.SuspendLayout();
+            this.WorkersTabpage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             this.productsTabpage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ingridiensGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.userOperationTabpage);
-            this.tabControl.Controls.Add(this.kitchenTabpage);
+            this.tabControl.Controls.Add(this.WorkersTabpage);
             this.tabControl.Controls.Add(this.productsTabpage);
             this.tabControl.Controls.Add(this.ordersTabpage);
             this.tabControl.Controls.Add(this.historyTabpage);
@@ -85,7 +87,7 @@
             this.tabControl.Location = new System.Drawing.Point(12, 44);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1017, 595);
+            this.tabControl.Size = new System.Drawing.Size(963, 595);
             this.tabControl.TabIndex = 0;
             // 
             // userOperationTabpage
@@ -97,7 +99,7 @@
             this.userOperationTabpage.Location = new System.Drawing.Point(4, 29);
             this.userOperationTabpage.Name = "userOperationTabpage";
             this.userOperationTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.userOperationTabpage.Size = new System.Drawing.Size(1009, 562);
+            this.userOperationTabpage.Size = new System.Drawing.Size(955, 562);
             this.userOperationTabpage.TabIndex = 0;
             this.userOperationTabpage.Text = "Управление пользователями";
             this.userOperationTabpage.UseVisualStyleBackColor = true;
@@ -131,7 +133,7 @@
             this.editUserButton.TabIndex = 19;
             this.editUserButton.Text = "Редактировать";
             this.editUserButton.UseVisualStyleBackColor = true;
-            this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
+            //this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
             // 
             // editUserTextBox
             // 
@@ -340,16 +342,16 @@
             this.addUserButton.UseVisualStyleBackColor = true;
             this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
             // 
-            // kitchenTabpage
+            // WorkersTabpage
             // 
-            this.kitchenTabpage.Controls.Add(this.usersDataGridView);
-            this.kitchenTabpage.Location = new System.Drawing.Point(4, 29);
-            this.kitchenTabpage.Name = "kitchenTabpage";
-            this.kitchenTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.kitchenTabpage.Size = new System.Drawing.Size(1009, 562);
-            this.kitchenTabpage.TabIndex = 1;
-            this.kitchenTabpage.Text = "Список работников";
-            this.kitchenTabpage.UseVisualStyleBackColor = true;
+            this.WorkersTabpage.Controls.Add(this.usersDataGridView);
+            this.WorkersTabpage.Location = new System.Drawing.Point(4, 29);
+            this.WorkersTabpage.Name = "WorkersTabpage";
+            this.WorkersTabpage.Padding = new System.Windows.Forms.Padding(3);
+            this.WorkersTabpage.Size = new System.Drawing.Size(955, 562);
+            this.WorkersTabpage.TabIndex = 1;
+            this.WorkersTabpage.Text = "Список работников";
+            this.WorkersTabpage.UseVisualStyleBackColor = true;
             // 
             // usersDataGridView
             // 
@@ -358,35 +360,56 @@
             this.usersDataGridView.Name = "usersDataGridView";
             this.usersDataGridView.RowHeadersWidth = 51;
             this.usersDataGridView.RowTemplate.Height = 29;
-            this.usersDataGridView.Size = new System.Drawing.Size(997, 536);
+            this.usersDataGridView.Size = new System.Drawing.Size(943, 550);
             this.usersDataGridView.TabIndex = 1;
             // 
             // productsTabpage
             // 
-            this.productsTabpage.Controls.Add(this.button1);
+            this.productsTabpage.Controls.Add(this.zakup_button);
+            this.productsTabpage.Controls.Add(this.ingridiensGridView);
             this.productsTabpage.Location = new System.Drawing.Point(4, 29);
             this.productsTabpage.Name = "productsTabpage";
             this.productsTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.productsTabpage.Size = new System.Drawing.Size(1009, 562);
+            this.productsTabpage.Size = new System.Drawing.Size(955, 562);
             this.productsTabpage.TabIndex = 2;
-            this.productsTabpage.Text = "Продукты";
+            this.productsTabpage.Text = "Наличие продуктов";
             this.productsTabpage.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // zakup_button
             // 
-            this.button1.Location = new System.Drawing.Point(118, 101);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.zakup_button.Location = new System.Drawing.Point(712, 481);
+            this.zakup_button.Name = "zakup_button";
+            this.zakup_button.Size = new System.Drawing.Size(269, 55);
+            this.zakup_button.TabIndex = 1;
+            this.zakup_button.Text = "Закупка";
+            this.zakup_button.UseVisualStyleBackColor = true;
+            // 
+            // ingridiensGridView
+            // 
+            this.ingridiensGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ingridiensGridView.Location = new System.Drawing.Point(6, 6);
+            this.ingridiensGridView.Name = "ingridiensGridView";
+            this.ingridiensGridView.RowHeadersWidth = 51;
+            this.ingridiensGridView.RowTemplate.Height = 29;
+            this.ingridiensGridView.Size = new System.Drawing.Size(943, 442);
+            this.ingridiensGridView.TabIndex = 0;
+            // 
+            // ordersTabpage
+            // 
+            this.ordersTabpage.Location = new System.Drawing.Point(4, 29);
+            this.ordersTabpage.Name = "ordersTabpage";
+            this.ordersTabpage.Padding = new System.Windows.Forms.Padding(3);
+            this.ordersTabpage.Size = new System.Drawing.Size(955, 562);
+            this.ordersTabpage.TabIndex = 5;
+            this.ordersTabpage.Text = "Оформление заказа";
+            this.ordersTabpage.UseVisualStyleBackColor = true;
             // 
             // historyTabpage
             // 
             this.historyTabpage.Location = new System.Drawing.Point(4, 29);
             this.historyTabpage.Name = "historyTabpage";
             this.historyTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.historyTabpage.Size = new System.Drawing.Size(1009, 562);
+            this.historyTabpage.Size = new System.Drawing.Size(955, 562);
             this.historyTabpage.TabIndex = 3;
             this.historyTabpage.Text = "История заказов";
             this.historyTabpage.UseVisualStyleBackColor = true;
@@ -396,26 +419,16 @@
             this.reportsTabpage.Location = new System.Drawing.Point(4, 29);
             this.reportsTabpage.Name = "reportsTabpage";
             this.reportsTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.reportsTabpage.Size = new System.Drawing.Size(1009, 562);
+            this.reportsTabpage.Size = new System.Drawing.Size(955, 562);
             this.reportsTabpage.TabIndex = 4;
             this.reportsTabpage.Text = "Оформление отчетов";
             this.reportsTabpage.UseVisualStyleBackColor = true;
-            // 
-            // ordersTabpage
-            // 
-            this.ordersTabpage.Location = new System.Drawing.Point(4, 29);
-            this.ordersTabpage.Name = "ordersTabpage";
-            this.ordersTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.ordersTabpage.Size = new System.Drawing.Size(1009, 562);
-            this.ordersTabpage.TabIndex = 5;
-            this.ordersTabpage.Text = "Оформление заказа";
-            this.ordersTabpage.UseVisualStyleBackColor = true;
             // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 651);
+            this.ClientSize = new System.Drawing.Size(1001, 651);
             this.Controls.Add(this.tabControl);
             this.Name = "MainMenuForm";
             this.Text = "Anteiku - ГЛАВНОЕ МЕНЮ";
@@ -432,9 +445,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.kitchenTabpage.ResumeLayout(false);
+            this.WorkersTabpage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).EndInit();
             this.productsTabpage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ingridiensGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -443,10 +457,9 @@
 
         private TabControl tabControl;
         private TabPage userOperationTabpage;
-        private TabPage kitchenTabpage;
+        private TabPage WorkersTabpage;
         private TabPage productsTabpage;
         private Button addUserButton;
-        private Button button1;
         private TextBox textBox1;
         private Label label3;
         private Label label2;
@@ -475,5 +488,7 @@
         private ComboBox SheduleDays_comboBox;
         private GroupBox groupBox5;
         private TabPage ordersTabpage;
+        private Button zakup_button;
+        private DataGridView ingridiensGridView;
     }
 }

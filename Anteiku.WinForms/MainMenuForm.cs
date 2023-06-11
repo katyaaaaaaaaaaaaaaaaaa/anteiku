@@ -10,8 +10,14 @@ namespace Anteiku.WinForms;
 public partial class MainMenuForm : Form
 {
     private readonly IUserService _userService;
+    private readonly IDishService _dishService;
     private readonly string _positionTitle;
     private List<UserOutput> users = new List<UserOutput>();
+    private List<DishOutput> dishes = new List<DishOutput>();
+    private List<IngridientOutput> ingridiens = new List<IngridientOutput>();
+
+
+
 
     private delegate void UsersCountHandler();
 
@@ -37,7 +43,7 @@ public partial class MainMenuForm : Form
 
         if (_positionTitle != "Cook")
         {
-            ((Control)this.kitchenTabpage).Enabled = false;
+            ((Control)this.WorkersTabpage).Enabled = false;
         }
 
         ((Control)this.productsTabpage).Enabled = false;
@@ -156,8 +162,59 @@ public partial class MainMenuForm : Form
 
     private void editUserButton_Click(object sender, EventArgs e)
     {
-        //TODO: проверка
+        //string name = textBox1.Text;
+
+        //if (string.IsNullOrEmpty(name))
+        //{
+        //    MessageBox.Show("Имя не может быть пустым!");
+        //    return;
+        //}
+
+        //DateTime birthday = birthdayDatetimePicker.Value;
+
+        //var roleAsString = positionsCombobox.Text;
+
+        //if (string.IsNullOrEmpty(roleAsString))
+        //{
+        //    MessageBox.Show("Не выбрана должность!");
+        //    return;
+        //}
+
+        //int posId = _userService.GetRoleIdByRoleName(roleAsString);
+
+        //string? day = SheduleDays_comboBox.Text;
+
+        //if (string.IsNullOrEmpty(day))
+        //{
+        //    MessageBox.Show("Не выбрано расписание!");
+        //    return;
+        //}
+
+        //var time = SheduleTime_comboBox.Text;
+
+        //if (string.IsNullOrEmpty(time))
+        //{
+        //    MessageBox.Show("Не выбрано расписание!");
+        //    return;
+        //}
+
+        //string comment = comment_textbox.Text;
+
+
+        ////TODO: проверка
+
         var editedUser = _userService.GetById(int.Parse(editUserTextBox.Text));
+
+        //var editedUser = _userService.UpdateUser(int.Parse(editUserTextBox.Text), name,
+        //   birthday,
+        //   posId,
+        //   comment,
+        //   ScheduleHelper.GetDayAsEnumFromString(day),
+        //   ScheduleHelper.GetTimeAsEnumFromString(time));
+
+        UsersChanged.Invoke();
+
+        MessageBox.Show("Пользователь добавлен!");
 
         EditUserForm editUserForm = new EditUserForm(_userService, editedUser);
 
@@ -182,5 +239,11 @@ public partial class MainMenuForm : Form
     private void SheduleTime_comboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+
+    private void UpdateProductsDataGridView()
+    {
+        ingridiens = _dishService.GetAllIngridients();
+        ingridiensGridView.DataSource = ingridiens;
     }
 }

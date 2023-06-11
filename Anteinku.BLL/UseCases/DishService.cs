@@ -2,6 +2,7 @@
 using Anteiku.BLL.Mappings;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Abstractions;
+using Anteiku.DAL.Repositories;
 
 namespace Anteiku.BLL.UseCases;
 
@@ -55,5 +56,11 @@ public class DishService : IDishService
         var createdDish = _dishRepository.UpdateDish(dishId, title, price, ingridientsIds);
 
         return createdDish.ToDishOutput();
+    }
+
+    public List<IngridientOutput> GetAllIngridients()
+    {
+        var ingridients = _dishRepository.GetAllIngridients().Select(x => x.ToIngridientOutput()).ToList();
+        return ingridients;
     }
 }

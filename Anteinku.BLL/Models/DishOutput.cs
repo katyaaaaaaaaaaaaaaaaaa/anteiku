@@ -6,7 +6,7 @@ public class DishOutput
 
     public string PriceInUsd { get; set; } = string.Empty;
 
-    public List<IngridientsOutput> Ingridients { get; set; } = new List<IngridientsOutput>();
+    public List<IngridientOutput> Ingridients { get; set; } = new List<IngridientOutput>();
 
     //TODO: homework override ToString()
 }

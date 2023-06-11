@@ -80,19 +80,19 @@ public class UserRepository : IUserRepository
         return position.PositionId;
     }
 
-    public void UpdateUser(int id, string userName, DateTime birthday, string positionTitle, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
-    {
-        var user = GetById(id);
+    //public void UpdateUser(int id, string userName, DateTime birthday, int positionId, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
+    //{
+    //    var user = GetById(id);
 
-        user.UserName = userName;
-        //user.Position = positionTitle;
-        user.BirthDate = birthday;
-        user.ScheduleDays = scheduleDays;
-        user.ScheduleTime = scheduleTime;
-        user.Comment= comment;
+    //    user.UserName = userName;
+    //    //user.Position = positionId;
+    //    user.BirthDate = birthday;
+    //    user.ScheduleDays = scheduleDays;
+    //    user.ScheduleTime = scheduleTime;
+    //    user.Comment= comment;
 
-        _db.Update(user);
+    //    _db.Update(user);
 
-        _db.SaveChanges();
-    }
+    //    _db.SaveChanges();
+    //}
 }

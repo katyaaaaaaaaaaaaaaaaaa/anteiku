@@ -24,7 +24,7 @@ public interface IUserService
     int GetRoleIdByRoleName(string roleName);
 
     //TODO: добавить остальные поля и position id
-    void UpdateUser(int id, string userName, DateTime birthday, 
-                    string positionTitle, string comment, 
-                    ScheduleDays scheduleDays, ScheduleTime scheduleTime);
+    //void UpdateUser(int id, string userName, DateTime birthday, 
+    //                int positionId, string comment, 
+    //                ScheduleDays scheduleDays, ScheduleTime scheduleTime);
 }

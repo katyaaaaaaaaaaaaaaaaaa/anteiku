@@ -15,7 +15,7 @@ public static class DishEntityToDishOutput
             Title = dishEntity.DishTitle,
             PriceInUsd = $"{dishEntity.DishPrice} $",
             Ingridients = dishEntity.Ingridients
-                                .Select(createdDish => new IngridientsOutput
+                                .Select(createdDish => new IngridientOutput
                                 {
                                     Title = createdDish.IngridientTitle
                                 }).ToList()
