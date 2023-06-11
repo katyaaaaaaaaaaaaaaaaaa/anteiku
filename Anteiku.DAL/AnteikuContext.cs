@@ -9,7 +9,7 @@ public class AnteikuContext : DbContext
     public AnteikuContext(DbContextOptions<AnteikuContext> options)
         : base(options)
     {
-        //Database.EnsureDeleted();
+        Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
@@ -58,20 +58,34 @@ public class AnteikuContext : DbContext
                new IngridientEntity
                {
                    IngridientId = 1,
-                   IngridientTitle = "pasta",
-                   IngridientPrice = 5.3,
+                   IngridientTitle = "Куриные яйца",
+                   IngridientType = IngridientType.COUNT,
+                   CountForPrice = 10,
+                   IngridientPriceInByn = 3,
                },
                new IngridientEntity
                {
                    IngridientId = 2,
-                   IngridientTitle = "Cheese",
-                   IngridientPrice = 7.4,
+                   IngridientTitle = "Сыр сливочный",
+                   IngridientType = IngridientType.GRAMS,
+                   CountForPrice = 100,
+                   IngridientPriceInByn = 3.5,
                },
                new IngridientEntity
                {
                    IngridientId = 3,
-                   IngridientTitle = "meet",
-                   IngridientPrice = 10.5,
+                   IngridientTitle = "Куриное филе",
+                   IngridientType = IngridientType.GRAMS,
+                   CountForPrice = 1000,
+                   IngridientPriceInByn = 12,
+               },
+               new IngridientEntity
+               {
+                   IngridientId = 4,
+                   IngridientTitle = "Молоко",
+                   IngridientType = IngridientType.MILLILITERS,
+                   CountForPrice = 1000,
+                   IngridientPriceInByn = 12,
                }
        );        
     }

@@ -43,13 +43,13 @@ namespace Anteiku.WinForms
 
             #region BLL_SERVICES
 
-            IDishService _dishService = new DishService(dishRepository);
+            IDishService dishService = new DishService(dishRepository);
 
             UserService userService = new UserService(userRepository);
 
             #endregion
 
-            Application.Run(new LoginForm(userService));
+            Application.Run(new LoginForm(userService, dishService));
         }
     }
 }

@@ -1,68 +1,95 @@
 ﻿using Anteiku.BLL.Abstractions;
+using Anteiku.BLL.Helpers;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Enums;
 using Anteiku.WinForms.Models;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace Anteiku.WinForms
+namespace Anteiku.WinForms;
+
+public partial class EditUserForm : Form
 {
-    public partial class EditUserForm : Form
+    private UserOutput _user { get; set; }
+    private readonly IUserService _userService;
+
+    public EditUserForm()
     {
-        private UserOutput _user { get; set; }
-        private readonly IUserService _userService;
+        InitializeComponent();
+    }
 
-        public EditUserForm()
+    public EditUserForm(IUserService userService, UserOutput user)
+    {
+        InitializeComponent();
+        _userService = userService;
+        _user = user;
+
+        userNameTextBox.Text = user.UserName;
+        comment_textbox.Text = user.Comment;
+        birthdayDatetimePicker.Value =user.BirthDate;
+        SheduleDays_comboBox.Text = user.ScheduleDays.ToString();
+        SheduleTime_comboBox.Text = user.ScheduleTime.ToString();
+        positionsCombobox.Text = user.PositionTitle;
+
+        var positions = _userService.GetAllPositions();
+        positionsCombobox.Items.AddRange(positions.Select(x => x.PositionTitle).ToArray());
+
+        var days = Enum.GetValues(typeof(ScheduleDays))
+            .Cast<ScheduleDays>()
+            .Select(x => new DaysViewModel(x))
+            .ToList();
+
+        SheduleDays_comboBox.Items.AddRange(days.Select(x => x.DayAsString).ToArray());
+
+        var time = Enum.GetValues(typeof(ScheduleTime))
+            .Cast<ScheduleTime>()
+            .Select(x => new TimeViewModel(x))
+            .ToList();
+
+        SheduleTime_comboBox.Items.AddRange(time.Select(x => x.TimeAsString).ToArray());
+    }
+
+    private void saveUserButton_Click(object sender, EventArgs e)
+    {
+        var roleAsString = positionsCombobox.Text;
+
+        if (string.IsNullOrEmpty(roleAsString))
         {
-            InitializeComponent();
+            MessageBox.Show("Не выбрана должность!");
+            return;
         }
 
-        public EditUserForm(IUserService userService, UserOutput user)
+        int posId = _userService.GetRoleIdByRoleName(roleAsString);
+
+        string? day = SheduleDays_comboBox.Text;
+
+        if (string.IsNullOrEmpty(day))
         {
-            InitializeComponent();
-            _userService = userService;
-            _user = user;
-            userNameTextBox.Text = user.UserName;
-            comment_textbox.Text = user.Comment;
-            birthdayDatetimePicker.Value =user.BirthDate;
-            SheduleDays_comboBox.Text = user.ScheduleDays.ToString();
-            SheduleTime_comboBox.Text = user.ScheduleTime.ToString();
-            positionsCombobox.Text = user.PositionTitle;
-
-
-
-            var positions = _userService.GetAllPositions();
-            positionsCombobox.Items.AddRange(positions.Select(x => x.PositionTitle).ToArray());
-
-            var days = Enum.GetValues(typeof(ScheduleDays))
-                .Cast<ScheduleDays>()
-                .Select(x => new DaysViewModel(x))
-                .ToList();
-
-            SheduleDays_comboBox.Items.AddRange(days.Select(x => x.DayAsString).ToArray());
-
-            var time = Enum.GetValues(typeof(ScheduleTime))
-                .Cast<ScheduleTime>()
-                .Select(x => new TimeViewModel(x))
-                .ToList();
-
-            SheduleTime_comboBox.Items.AddRange(time.Select(x => x.TimeAsString).ToArray());
-
+            MessageBox.Show("Не выбрано расписание!");
+            return;
         }
-    
 
-        private void saveButton_Click(object sender, EventArgs e)
+        var time = SheduleTime_comboBox.Text;
+
+        if (string.IsNullOrEmpty(time))
         {
-            //_userService.UpdateUser(_user.Id, _user.UserName, _user.BirthDate,_user.PositionTitle, _user.Comment, _user.ScheduleDays, _user.ScheduleTime);
-            this.Close();
+            MessageBox.Show("Не выбрано расписание!");
+            return;
         }
+
+        try
+        {
+            _userService.UpdateUser(_user.Id, userNameTextBox.Text, birthdayDatetimePicker.Value, posId,
+            comment_textbox.Text,
+            ScheduleHelper.GetDayAsEnumFromString(day),
+            ScheduleHelper.GetTimeAsEnumFromString(time));
+
+            MessageBox.Show("Изменения сохранены успешно!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ошибка : {ex.Message}");
+        }        
+
+        this.Close();
     }
 }

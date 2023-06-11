@@ -59,7 +59,7 @@
             this.usersDataGridView = new System.Windows.Forms.DataGridView();
             this.productsTabpage = new System.Windows.Forms.TabPage();
             this.zakup_button = new System.Windows.Forms.Button();
-            this.ingridiensGridView = new System.Windows.Forms.DataGridView();
+            this.ingridientsGridView = new System.Windows.Forms.DataGridView();
             this.ordersTabpage = new System.Windows.Forms.TabPage();
             this.historyTabpage = new System.Windows.Forms.TabPage();
             this.reportsTabpage = new System.Windows.Forms.TabPage();
@@ -73,7 +73,7 @@
             this.WorkersTabpage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             this.productsTabpage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ingridiensGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingridientsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -133,7 +133,7 @@
             this.editUserButton.TabIndex = 19;
             this.editUserButton.Text = "Редактировать";
             this.editUserButton.UseVisualStyleBackColor = true;
-            //this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
+            this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
             // 
             // editUserTextBox
             // 
@@ -366,7 +366,7 @@
             // productsTabpage
             // 
             this.productsTabpage.Controls.Add(this.zakup_button);
-            this.productsTabpage.Controls.Add(this.ingridiensGridView);
+            this.productsTabpage.Controls.Add(this.ingridientsGridView);
             this.productsTabpage.Location = new System.Drawing.Point(4, 29);
             this.productsTabpage.Name = "productsTabpage";
             this.productsTabpage.Padding = new System.Windows.Forms.Padding(3);
@@ -377,22 +377,22 @@
             // 
             // zakup_button
             // 
-            this.zakup_button.Location = new System.Drawing.Point(712, 481);
+            this.zakup_button.Location = new System.Drawing.Point(680, 484);
             this.zakup_button.Name = "zakup_button";
             this.zakup_button.Size = new System.Drawing.Size(269, 55);
             this.zakup_button.TabIndex = 1;
             this.zakup_button.Text = "Закупка";
             this.zakup_button.UseVisualStyleBackColor = true;
             // 
-            // ingridiensGridView
+            // ingridientsGridView
             // 
-            this.ingridiensGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ingridiensGridView.Location = new System.Drawing.Point(6, 6);
-            this.ingridiensGridView.Name = "ingridiensGridView";
-            this.ingridiensGridView.RowHeadersWidth = 51;
-            this.ingridiensGridView.RowTemplate.Height = 29;
-            this.ingridiensGridView.Size = new System.Drawing.Size(943, 442);
-            this.ingridiensGridView.TabIndex = 0;
+            this.ingridientsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ingridientsGridView.Location = new System.Drawing.Point(6, 6);
+            this.ingridientsGridView.Name = "ingridientsGridView";
+            this.ingridientsGridView.RowHeadersWidth = 51;
+            this.ingridientsGridView.RowTemplate.Height = 29;
+            this.ingridientsGridView.Size = new System.Drawing.Size(943, 442);
+            this.ingridientsGridView.TabIndex = 0;
             // 
             // ordersTabpage
             // 
@@ -448,7 +448,7 @@
             this.WorkersTabpage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).EndInit();
             this.productsTabpage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ingridiensGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingridientsGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -489,6 +489,6 @@
         private GroupBox groupBox5;
         private TabPage ordersTabpage;
         private Button zakup_button;
-        private DataGridView ingridiensGridView;
+        private DataGridView ingridientsGridView;
     }
 }

@@ -60,7 +60,10 @@ public class DishService : IDishService
 
     public List<IngridientOutput> GetAllIngridients()
     {
-        var ingridients = _dishRepository.GetAllIngridients().Select(x => x.ToIngridientOutput()).ToList();
+        var ingridients = _dishRepository.GetAllIngridients()
+            .Select(x => x.ToIngridientOutput())
+            .ToList();
+
         return ingridients;
     }
 }

@@ -176,6 +176,7 @@
             this.saveUserButton.TabIndex = 0;
             this.saveUserButton.Text = "Сохранить";
             this.saveUserButton.UseVisualStyleBackColor = true;
+            this.saveUserButton.Click += new System.EventHandler(this.saveUserButton_Click);
             // 
             // EditUserForm
             // 

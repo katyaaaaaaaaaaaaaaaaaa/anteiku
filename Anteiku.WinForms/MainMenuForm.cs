@@ -10,13 +10,16 @@ namespace Anteiku.WinForms;
 public partial class MainMenuForm : Form
 {
     private readonly IUserService _userService;
+
     private readonly IDishService _dishService;
+
     private readonly string _positionTitle;
+
     private List<UserOutput> users = new List<UserOutput>();
+
     private List<DishOutput> dishes = new List<DishOutput>();
-    private List<IngridientOutput> ingridiens = new List<IngridientOutput>();
 
-
+    private List<IngridientOutput> ingridients = new List<IngridientOutput>();
 
 
     private delegate void UsersCountHandler();
@@ -29,9 +32,8 @@ public partial class MainMenuForm : Form
         ((Control)this.productsTabpage).Enabled = false;
     }
 
-    public MainMenuForm(string positionTitle, IUserService userService)
-    {
-        
+    public MainMenuForm(string positionTitle, IUserService userService, IDishService dishService)
+    {        
         InitializeComponent();
 
         _positionTitle = positionTitle;
@@ -46,8 +48,15 @@ public partial class MainMenuForm : Form
             ((Control)this.WorkersTabpage).Enabled = false;
         }
 
-        ((Control)this.productsTabpage).Enabled = false;
+        //((Control)this.productsTabpage).Enabled = false;
+
+        #region SERVICES
+
         _userService = userService;
+
+        _dishService = dishService;
+
+        #endregion
 
         var positions = _userService.GetAllPositions();
         positionsCombobox.Items.AddRange(positions.Select(x=>x.PositionTitle).ToArray());
@@ -74,6 +83,10 @@ public partial class MainMenuForm : Form
 
         UsersChanged += UpdateUsersDataGridView;
         UsersChanged += UpdateUsersCount;
+
+        ingridients = _dishService.GetAllIngridients();
+
+        ingridientsGridView.DataSource = ingridients;
     }
 
     private void UpdateUsersDataGridView()
@@ -161,68 +174,23 @@ public partial class MainMenuForm : Form
     }
 
     private void editUserButton_Click(object sender, EventArgs e)
-    {
-        //string name = textBox1.Text;
-
-        //if (string.IsNullOrEmpty(name))
-        //{
-        //    MessageBox.Show("Имя не может быть пустым!");
-        //    return;
-        //}
-
-        //DateTime birthday = birthdayDatetimePicker.Value;
-
-        //var roleAsString = positionsCombobox.Text;
-
-        //if (string.IsNullOrEmpty(roleAsString))
-        //{
-        //    MessageBox.Show("Не выбрана должность!");
-        //    return;
-        //}
-
-        //int posId = _userService.GetRoleIdByRoleName(roleAsString);
-
-        //string? day = SheduleDays_comboBox.Text;
-
-        //if (string.IsNullOrEmpty(day))
-        //{
-        //    MessageBox.Show("Не выбрано расписание!");
-        //    return;
-        //}
-
-        //var time = SheduleTime_comboBox.Text;
-
-        //if (string.IsNullOrEmpty(time))
-        //{
-        //    MessageBox.Show("Не выбрано расписание!");
-        //    return;
-        //}
-
-        //string comment = comment_textbox.Text;
-
-
-        ////TODO: проверка
-
+    {  
         var editedUser = _userService.GetById(int.Parse(editUserTextBox.Text));
 
-        //var editedUser = _userService.UpdateUser(int.Parse(editUserTextBox.Text), name,
-        //   birthday,
-        //   posId,
-        //   comment,
-        //   ScheduleHelper.GetDayAsEnumFromString(day),
-        //   ScheduleHelper.GetTimeAsEnumFromString(time));
+        if (editedUser is null)
+        {
+            MessageBox.Show($"Пользователь c id {editUserTextBox.Text} не найден!");
+        }
+        else
+        {
+            EditUserForm editUserForm = new EditUserForm(_userService, editedUser);
 
-        UsersChanged.Invoke();
+            editUserForm.FormClosed += Action;
 
-        MessageBox.Show("Пользователь добавлен!");
+            this.Hide();
 
-        EditUserForm editUserForm = new EditUserForm(_userService, editedUser);
-
-        editUserForm.FormClosed += Action;
-
-        this.Hide();
-
-        editUserForm.Show();
+            editUserForm.Show();
+        }         
     }
 
     private void Action(object sender, EventArgs e)
@@ -243,7 +211,7 @@ public partial class MainMenuForm : Form
 
     private void UpdateProductsDataGridView()
     {
-        ingridiens = _dishService.GetAllIngridients();
-        ingridiensGridView.DataSource = ingridiens;
+        ingridients = _dishService.GetAllIngridients();
+        ingridientsGridView.DataSource = ingridients;
     }
 }

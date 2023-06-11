@@ -6,15 +6,19 @@ public partial class LoginForm : Form
 {
     private readonly IUserService _userService;
 
+    private readonly IDishService _dishService;
+
     public LoginForm()
     {
         InitializeComponent();
     }
 
-    public LoginForm(IUserService userService)
+    public LoginForm(IUserService userService, IDishService dishService)
     {
         InitializeComponent();
+
         _userService = userService;
+        _dishService = dishService;
     }
 
     private void loginButton_Click(object sender, EventArgs e)
@@ -27,7 +31,7 @@ public partial class LoginForm : Form
         }
         else
         {
-            MainMenuForm mainMenuForm = new MainMenuForm(user.PositionTitle, _userService);
+            MainMenuForm mainMenuForm = new MainMenuForm(user.PositionTitle, _userService, _dishService);
 
             mainMenuForm.FormClosed += Action;
 

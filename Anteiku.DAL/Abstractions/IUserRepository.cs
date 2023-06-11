@@ -22,5 +22,7 @@ public interface IUserRepository
     void DelUser(int userId);
 
     //TODO: добавить остальные поля
-    //void UpdateUser(int id, string userName, DateTime birthday, int positionid, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime);
+    void UpdateUser(int id, string userName, DateTime birthday, 
+        int positionid, string comment, 
+        ScheduleDays scheduleDays, ScheduleTime scheduleTime);
 }

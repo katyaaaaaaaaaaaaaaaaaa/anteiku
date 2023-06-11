@@ -74,11 +74,12 @@ public class UserService : IUserService
         return _userRepository.GetRoleIdByRoleName(roleName);
     }
 
-    //public void UpdateUser(int id, string userName, DateTime birthday, int positionId, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
-    //{
-    //    //TODO: добавить проверку на пустоту и null - roleName
-    //    _userRepository.UpdateUser(id,  userName,  birthday,  positionId,  comment,  scheduleDays,  scheduleTime);
-    //}
+    public void UpdateUser(int id, string userName, DateTime birthday, int positionId, 
+        string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
+    {
+        //TODO: добавить проверку на пустоту и null - roleName
+        _userRepository.UpdateUser(id, userName, birthday, positionId, comment, scheduleDays, scheduleTime);
+    }
 
     public void AddUser(string name, DateTime birthDate, int positionId, string comment, ScheduleDays scheduleDays, ScheduleTime scheduleTime)
     {
