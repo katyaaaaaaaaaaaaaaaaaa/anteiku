@@ -1,30 +1,29 @@
 ﻿using Anteiku.BLL.Abstractions;
 using Anteiku.BLL.Helpers;
 using Anteiku.BLL.Models;
-using Anteiku.BLL.UseCases;
 using Anteiku.DAL.Enums;
 using Anteiku.WinForms.Models;
 using System.Data;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
-using System.Windows.Forms;
-
 
 namespace Anteiku.WinForms
 {
     public partial class PurchaseIngridientsForm : Form
     {
         private IngridientOutput _ingridient { get; set; }
+
         private readonly IDishService _dishService;
+        private readonly IHistoryService _historyService;
 
         public PurchaseIngridientsForm()
         {
             InitializeComponent();
         }
 
-        public PurchaseIngridientsForm(IDishService dishService)
+        public PurchaseIngridientsForm(IDishService dishService, IHistoryService historyService)
         {
             InitializeComponent();
             _dishService = dishService;
+            _historyService = historyService;
 
             var types = Enum.GetValues(typeof(IngridientType))
           .Cast<IngridientType>()
@@ -36,15 +35,15 @@ namespace Anteiku.WinForms
 
         private void saveIngButton_Click(object sender, EventArgs e)
         {
-           
             string title = NameTextBox.Text;
+
             if (string.IsNullOrEmpty(title))
             {
                 MessageBox.Show("название не может быть пустым!");
                 return;
             }
+
             double price = double.Parse(priceTextBox.Text);
-            int countForPrice = int.Parse(countPriceTextBox.Text);
             int count = int.Parse(CountTextBox.Text);
 
             var type = typesCombobox.Text;
@@ -57,12 +56,66 @@ namespace Anteiku.WinForms
 
             _dishService.AddNewIng(title,
             price,
-            countForPrice,
             count,
             ScheduleHelper.GetTypeAsEnumFromString(type));
-            //IngChanged.Invoke();
+
+            _historyService.CreatePurchaseHistoryItem(title, price, count);
 
             MessageBox.Show("Пользователь добавлен!");
+        }
+
+        private void typesCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = typesCombobox.SelectedItem.ToString();
+
+            string t = string.Empty;
+
+            switch (ScheduleHelper.GetTypeAsEnumFromString(selectedItem))
+            {
+                case IngridientType.COUNT:
+                    t = "10 шт.";
+                    break;
+                case IngridientType.GRAMS:
+                    t = "1000 гр.";
+                    break;
+                case IngridientType.MILLILITERS:
+                    t = "1000 мл.";
+                    break;                    
+                default:
+                    break;
+            }
+
+            priceLabel.Text = $"Введите цену за {t}";
+        }
+
+        private void CountTextBox_TextChanged(object sender, EventArgs e)
+        {
+            var selectedItem = typesCombobox.SelectedItem.ToString();
+
+            int mul = 1;
+
+            switch (ScheduleHelper.GetTypeAsEnumFromString(selectedItem))
+            {
+                case IngridientType.COUNT:
+                    mul = 10;
+                    break;
+                case IngridientType.GRAMS:
+                    mul = 1000;
+                    break;
+                case IngridientType.MILLILITERS:                    
+                    mul = 1000;
+                    break;
+                default:
+                    break;
+            }
+
+            double price = double.Parse(priceTextBox.Text); //1000 - 40
+
+            int count = int.Parse(CountTextBox.Text); // 1150 - x
+
+            double total = count * price / mul;
+
+            totalSumLabel.Text = $"Итоговая сумма: {Math.Round(total, 2)} BYN.";
         }
     }
 }

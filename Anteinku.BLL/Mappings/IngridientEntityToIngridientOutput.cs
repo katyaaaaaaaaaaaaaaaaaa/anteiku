@@ -28,12 +28,11 @@ internal static class IngridientEntityToIngridientOutput
                 break;
         }
 
-
         IngridientOutput ingridientOutput = new()
         {
+            IngridientId = ingridientEntity.IngridientId,
             Title = ingridientEntity.IngridientTitle,
-            PriceInByn = ingridientEntity.IngridientPriceInByn.ToString() + " BYN",
-            CountForPrice = ingridientEntity.CountForPrice.ToString() + mod,
+            PriceForDefaultCountInByn = ingridientEntity.PriceForDefaultCountInByn.ToString() + " BYN",
             TotalCount = ingridientEntity.TotalCount.ToString() + mod
         };
 

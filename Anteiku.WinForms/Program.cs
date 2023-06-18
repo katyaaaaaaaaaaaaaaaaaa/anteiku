@@ -39,6 +39,8 @@ namespace Anteiku.WinForms
 
             UserRepository userRepository = new UserRepository(_db);
 
+            PurshaseHistoryRepository purshaseHistoryRepository = new PurshaseHistoryRepository(_db);
+
             #endregion
 
             #region BLL_SERVICES
@@ -47,9 +49,11 @@ namespace Anteiku.WinForms
 
             UserService userService = new UserService(userRepository);
 
+            HistoryService historyService = new HistoryService(purshaseHistoryRepository);
+
             #endregion
 
-            Application.Run(new LoginForm(userService, dishService));
+            Application.Run(new LoginForm(userService, dishService, historyService));
         }
     }
 }

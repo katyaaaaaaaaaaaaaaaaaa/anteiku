@@ -20,8 +20,6 @@ public interface IDishRepository
     public IngridientEntity? GetIngById(int id);
 
     IngridientEntity UpdateIng(int id, int col);
-    void AddIng(string title, double price, int countForPrice, int count, IngridientType type);
 
-
-
+    void AddIng(string title, double price, int count, IngridientType type);
 }

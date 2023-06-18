@@ -6,12 +6,7 @@ public class IngridientOutput
 
     public string Title { get; set; } = string.Empty;
 
-    /// <summary>
-    /// Количество при рассчете цены
-    /// </summary>
-    public string CountForPrice { get; set; }
-
-    public string PriceInByn { get; set; } = string.Empty;
+    public string PriceForDefaultCountInByn { get; set; } = string.Empty;
 
     /// <summary>
     /// Количество(штуки,граммы или мл) всего в наличии

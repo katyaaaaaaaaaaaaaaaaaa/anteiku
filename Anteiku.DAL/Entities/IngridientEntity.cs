@@ -13,22 +13,17 @@ public class IngridientEntity
     public string? IngridientTitle { get; set; }
 
     /// <summary>
-    /// Тип ингридиента: штучный или по весу
+    /// Тип ингридиента: штучный или по весу, или мл
     /// </summary>
     public IngridientType IngridientType { get; set; }
 
     /// <summary>
-    /// Количество при рассчете цены
+    /// Цена за 10 штук, 1000 грамм или 1000 мл
     /// </summary>
-    public int CountForPrice  { get; set; }
+    public double PriceForDefaultCountInByn { get; set; }
 
     /// <summary>
-    /// Цена за CountForPrice
-    /// </summary>
-    public double IngridientPriceInByn { get; set; }
-
-    /// <summary>
-    /// Количество(штуки,граммы или мл) всего в наличии
+    /// Количество (штуки,граммы или мл) всего в наличии
     /// </summary>
     public int TotalCount { get; set; }
 

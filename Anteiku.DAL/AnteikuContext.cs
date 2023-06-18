@@ -9,7 +9,8 @@ public class AnteikuContext : DbContext
     public AnteikuContext(DbContextOptions<AnteikuContext> options)
         : base(options)
     {
-        //Database.EnsureDeleted();
+        //TODO: comment
+        Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
@@ -20,6 +21,8 @@ public class AnteikuContext : DbContext
     public DbSet<IngridientEntity> Ingridients { get; set; }
 
     public DbSet<DishEntity> Dishes { get; set; }
+
+    public DbSet<PurchaseHistoryItemEntity> PurchasesHistory { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,33 +62,29 @@ public class AnteikuContext : DbContext
                {
                    IngridientId = 1,
                    IngridientTitle = "Куриные яйца",
-                   IngridientType = IngridientType.COUNT,
-                   CountForPrice = 10,
-                   IngridientPriceInByn = 3,
+                   IngridientType = IngridientType.COUNT,                   
+                   PriceForDefaultCountInByn = 3,
                },
                new IngridientEntity
                {
                    IngridientId = 2,
                    IngridientTitle = "Сыр сливочный",
                    IngridientType = IngridientType.GRAMS,
-                   CountForPrice = 100,
-                   IngridientPriceInByn = 3.5,
+                   PriceForDefaultCountInByn = 3.5,
                },
                new IngridientEntity
                {
                    IngridientId = 3,
                    IngridientTitle = "Куриное филе",
                    IngridientType = IngridientType.GRAMS,
-                   CountForPrice = 1000,
-                   IngridientPriceInByn = 12,
+                   PriceForDefaultCountInByn = 12,
                },
                new IngridientEntity
                {
                    IngridientId = 4,
                    IngridientTitle = "Молоко",
                    IngridientType = IngridientType.MILLILITERS,
-                   CountForPrice = 1000,
-                   IngridientPriceInByn = 12,
+                   PriceForDefaultCountInByn = 3,
                }
        );        
     }

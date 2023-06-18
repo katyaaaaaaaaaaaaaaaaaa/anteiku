@@ -32,10 +32,11 @@ public class DishRepository : IDishRepository
     {
         var findedIng = _db.Ingridients.FirstOrDefault(x => x.IngridientId == id );
 
-        if (findedIng is null)
-        {
-            throw new ArgumentException($"Ingridient with id {findedIng} not found");
-        }
+        //if (findedIng is null)
+        //{
+        //    throw new ArgumentException($"Ingridient with id {findedIng} not found");
+        //}
+
         return findedIng;
     }
 
@@ -124,6 +125,7 @@ public class DishRepository : IDishRepository
 
         return findedDish;
     }
+
     public IngridientEntity UpdateIng(int id, int col)
     {
         var findedIng = GetIngById(id);
@@ -140,13 +142,19 @@ public class DishRepository : IDishRepository
 
         return findedIng;
     }
-    public void AddIng(string title, double price, int countForPrice, int count, IngridientType type)
+
+    public void AddIng(string title, double price, int count, IngridientType type)
     {
-        var createdIng = new IngridientEntity {  IngridientTitle= title, IngridientType = type, CountForPrice = countForPrice, IngridientPriceInByn = price, TotalCount = count};
+        var createdIng = new IngridientEntity 
+        {  
+            IngridientTitle= title, 
+            IngridientType = type, 
+            PriceForDefaultCountInByn = price, 
+            TotalCount = count
+        };
 
         _db.Ingridients.Add(createdIng);
 
         _db.SaveChanges();
     }
-
 }

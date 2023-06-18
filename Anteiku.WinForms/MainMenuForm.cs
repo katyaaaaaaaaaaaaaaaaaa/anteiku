@@ -3,7 +3,6 @@ using Anteiku.BLL.Helpers;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Enums;
 using Anteiku.WinForms.Models;
-using Microsoft.VisualBasic.ApplicationServices;
 using System.Data;
 
 namespace Anteiku.WinForms;
@@ -13,6 +12,8 @@ public partial class MainMenuForm : Form
     private readonly IUserService _userService;
 
     private readonly IDishService _dishService;
+
+    private readonly IHistoryService _historyService;
 
     private readonly string _positionTitle;
 
@@ -40,8 +41,8 @@ public partial class MainMenuForm : Form
         ((Control)this.productsTabpage).Enabled = false;
     }
 
-    public MainMenuForm(string positionTitle, IUserService userService, IDishService dishService)
-    {        
+    public MainMenuForm(string positionTitle, IUserService userService, IDishService dishService, IHistoryService historyService)
+    {
         InitializeComponent();
 
         _positionTitle = positionTitle;
@@ -64,17 +65,19 @@ public partial class MainMenuForm : Form
 
         _dishService = dishService;
 
+        _historyService = historyService;
+
         #endregion
 
         var positions = _userService.GetAllPositions();
-        positionsCombobox.Items.AddRange(positions.Select(x=>x.PositionTitle).ToArray());
+        positionsCombobox.Items.AddRange(positions.Select(x => x.PositionTitle).ToArray());
 
         var days = Enum.GetValues(typeof(ScheduleDays))
             .Cast<ScheduleDays>()
-            .Select(x=> new DaysViewModel(x))
+            .Select(x => new DaysViewModel(x))
             .ToList();
 
-        SheduleDays_comboBox.Items.AddRange(days.Select(x=>x.DayAsString).ToArray());
+        SheduleDays_comboBox.Items.AddRange(days.Select(x => x.DayAsString).ToArray());
 
         var time = Enum.GetValues(typeof(ScheduleTime))
             .Cast<ScheduleTime>()
@@ -96,6 +99,7 @@ public partial class MainMenuForm : Form
 
         ingridientsGridView.DataSource = ingridients;
 
+        IngChanged += UpdateIngDataGridView;
         
     }
 
@@ -227,10 +231,9 @@ public partial class MainMenuForm : Form
 
     private void zakup_button_Click(object sender, EventArgs e)
     {
+        PurchaseIngridientsForm ZacupIngForm = new PurchaseIngridientsForm(_dishService, _historyService);
 
-        PurchaseIngridientsForm ZacupIngForm = new PurchaseIngridientsForm(_dishService);
-
-        ZacupIngForm.FormClosed += Action;
+        ZacupIngForm.FormClosed += ActionIng;
 
         this.Hide();
 
@@ -249,8 +252,11 @@ public partial class MainMenuForm : Form
         {
             var col =int.Parse(colTextBox.Text);
 
+            _ingridient = _dishService.UpdateIng(int.Parse(existIngIdTextBox.Text), col);
 
-            _ingridient =_dishService.UpdateIng(int.Parse(existIngIdTextBox.Text), col);
+            //TODO: как получить цену
+            //_historyService.CreatePurchaseHistoryItem(existIngId.Title, 
+            //    existIngId.PriceForDefaultCountInByn, col);
 
             IngChanged.Invoke();
         }
@@ -262,5 +268,23 @@ public partial class MainMenuForm : Form
         ingridientsGridView.DataSource = ingridients;
     }
 
-    
+    private void colTextBox_Enter(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(existIngIdTextBox.Text))
+        {
+            return;
+        }
+
+        var findedIng = _dishService.GetIngById(int.Parse(existIngIdTextBox.Text));
+
+        if (findedIng is not null)
+        {
+            ingridientLabel.Text = findedIng.Title;
+        }
+        else
+        {
+            ingridientLabel.ForeColor = Color.Red;
+            ingridientLabel.Text = "Ошибка! Ингридиент не найден.";
+        }
+    }
 }

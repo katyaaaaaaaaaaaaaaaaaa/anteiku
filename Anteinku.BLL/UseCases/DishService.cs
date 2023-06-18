@@ -82,9 +82,9 @@ public class DishService : IDishService
         return createdIng;
     }
 
-    public void AddNewIng(string title, double price, int countForPrice, int count, IngridientType type)
+    public void AddNewIng(string title, double price, int count, IngridientType type)
     {
-        _dishRepository.AddIng(title,price,countForPrice, count,type);
+        _dishRepository.AddIng(title,price, count,type);
     }
 
 

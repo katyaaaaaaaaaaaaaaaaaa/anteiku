@@ -59,6 +59,7 @@
             this.usersDataGridView = new System.Windows.Forms.DataGridView();
             this.productsTabpage = new System.Windows.Forms.TabPage();
             this.zacupOfExist = new System.Windows.Forms.GroupBox();
+            this.ingridientLabel = new System.Windows.Forms.Label();
             this.colTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.existIngIdTextBox = new System.Windows.Forms.TextBox();
@@ -94,7 +95,7 @@
             this.tabControl.Location = new System.Drawing.Point(12, 44);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(963, 539);
+            this.tabControl.Size = new System.Drawing.Size(963, 551);
             this.tabControl.TabIndex = 0;
             // 
             // userOperationTabpage
@@ -106,7 +107,7 @@
             this.userOperationTabpage.Location = new System.Drawing.Point(4, 29);
             this.userOperationTabpage.Name = "userOperationTabpage";
             this.userOperationTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.userOperationTabpage.Size = new System.Drawing.Size(955, 506);
+            this.userOperationTabpage.Size = new System.Drawing.Size(955, 518);
             this.userOperationTabpage.TabIndex = 0;
             this.userOperationTabpage.Text = "Управление пользователями";
             this.userOperationTabpage.UseVisualStyleBackColor = true;
@@ -191,9 +192,9 @@
             // 
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.num);
-            this.groupBox2.Location = new System.Drawing.Point(29, 428);
+            this.groupBox2.Location = new System.Drawing.Point(29, 417);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(454, 116);
+            this.groupBox2.Size = new System.Drawing.Size(454, 86);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Статистика";
@@ -355,7 +356,7 @@
             this.WorkersTabpage.Location = new System.Drawing.Point(4, 29);
             this.WorkersTabpage.Name = "WorkersTabpage";
             this.WorkersTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.WorkersTabpage.Size = new System.Drawing.Size(955, 506);
+            this.WorkersTabpage.Size = new System.Drawing.Size(955, 530);
             this.WorkersTabpage.TabIndex = 1;
             this.WorkersTabpage.Text = "Список работников";
             this.WorkersTabpage.UseVisualStyleBackColor = true;
@@ -378,36 +379,46 @@
             this.productsTabpage.Location = new System.Drawing.Point(4, 29);
             this.productsTabpage.Name = "productsTabpage";
             this.productsTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.productsTabpage.Size = new System.Drawing.Size(955, 506);
+            this.productsTabpage.Size = new System.Drawing.Size(955, 530);
             this.productsTabpage.TabIndex = 2;
             this.productsTabpage.Text = "Наличие продуктов";
             this.productsTabpage.UseVisualStyleBackColor = true;
             // 
             // zacupOfExist
             // 
+            this.zacupOfExist.Controls.Add(this.ingridientLabel);
             this.zacupOfExist.Controls.Add(this.colTextBox);
             this.zacupOfExist.Controls.Add(this.label10);
             this.zacupOfExist.Controls.Add(this.existIngIdTextBox);
             this.zacupOfExist.Controls.Add(this.zacupButton);
             this.zacupOfExist.Controls.Add(this.label7);
-            this.zacupOfExist.Location = new System.Drawing.Point(41, 383);
+            this.zacupOfExist.Location = new System.Drawing.Point(16, 358);
             this.zacupOfExist.Name = "zacupOfExist";
-            this.zacupOfExist.Size = new System.Drawing.Size(474, 104);
+            this.zacupOfExist.Size = new System.Drawing.Size(474, 133);
             this.zacupOfExist.TabIndex = 2;
             this.zacupOfExist.TabStop = false;
             this.zacupOfExist.Text = "Закупка добавленных ингридиентов";
             // 
+            // ingridientLabel
+            // 
+            this.ingridientLabel.AutoSize = true;
+            this.ingridientLabel.Location = new System.Drawing.Point(185, 45);
+            this.ingridientLabel.Name = "ingridientLabel";
+            this.ingridientLabel.Size = new System.Drawing.Size(0, 20);
+            this.ingridientLabel.TabIndex = 12;
+            // 
             // colTextBox
             // 
-            this.colTextBox.Location = new System.Drawing.Point(151, 59);
+            this.colTextBox.Location = new System.Drawing.Point(17, 100);
             this.colTextBox.Name = "colTextBox";
             this.colTextBox.Size = new System.Drawing.Size(125, 27);
             this.colTextBox.TabIndex = 11;
+            this.colTextBox.Enter += new System.EventHandler(this.colTextBox_Enter);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(151, 36);
+            this.label10.Location = new System.Drawing.Point(17, 77);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(148, 20);
             this.label10.TabIndex = 10;
@@ -415,14 +426,14 @@
             // 
             // existIngIdTextBox
             // 
-            this.existIngIdTextBox.Location = new System.Drawing.Point(8, 59);
+            this.existIngIdTextBox.Location = new System.Drawing.Point(17, 46);
             this.existIngIdTextBox.Name = "existIngIdTextBox";
             this.existIngIdTextBox.Size = new System.Drawing.Size(125, 27);
             this.existIngIdTextBox.TabIndex = 9;
             // 
             // zacupButton
             // 
-            this.zacupButton.Location = new System.Drawing.Point(330, 59);
+            this.zacupButton.Location = new System.Drawing.Point(324, 98);
             this.zacupButton.Name = "zacupButton";
             this.zacupButton.Size = new System.Drawing.Size(118, 29);
             this.zacupButton.TabIndex = 0;
@@ -433,7 +444,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 36);
+            this.label7.Location = new System.Drawing.Point(17, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 20);
             this.label7.TabIndex = 7;
@@ -464,7 +475,7 @@
             this.ordersTabpage.Location = new System.Drawing.Point(4, 29);
             this.ordersTabpage.Name = "ordersTabpage";
             this.ordersTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.ordersTabpage.Size = new System.Drawing.Size(955, 506);
+            this.ordersTabpage.Size = new System.Drawing.Size(955, 530);
             this.ordersTabpage.TabIndex = 5;
             this.ordersTabpage.Text = "Оформление заказа";
             this.ordersTabpage.UseVisualStyleBackColor = true;
@@ -474,7 +485,7 @@
             this.historyTabpage.Location = new System.Drawing.Point(4, 29);
             this.historyTabpage.Name = "historyTabpage";
             this.historyTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.historyTabpage.Size = new System.Drawing.Size(955, 506);
+            this.historyTabpage.Size = new System.Drawing.Size(955, 530);
             this.historyTabpage.TabIndex = 3;
             this.historyTabpage.Text = "История заказов";
             this.historyTabpage.UseVisualStyleBackColor = true;
@@ -484,7 +495,7 @@
             this.reportsTabpage.Location = new System.Drawing.Point(4, 29);
             this.reportsTabpage.Name = "reportsTabpage";
             this.reportsTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.reportsTabpage.Size = new System.Drawing.Size(955, 506);
+            this.reportsTabpage.Size = new System.Drawing.Size(955, 530);
             this.reportsTabpage.TabIndex = 4;
             this.reportsTabpage.Text = "Оформление отчетов";
             this.reportsTabpage.UseVisualStyleBackColor = true;
@@ -493,7 +504,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 576);
+            this.ClientSize = new System.Drawing.Size(1001, 599);
             this.Controls.Add(this.tabControl);
             this.Name = "MainMenuForm";
             this.Text = "Anteiku - ГЛАВНОЕ МЕНЮ";
@@ -563,5 +574,6 @@
         private Label label10;
         private TextBox existIngIdTextBox;
         private Label label7;
+        private Label ingridientLabel;
     }
 }

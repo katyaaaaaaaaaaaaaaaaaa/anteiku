@@ -22,6 +22,6 @@ public interface IDishService
 
     IngridientOutput UpdateIng(int id, int col);
 
-    void AddNewIng(string title,double price, int countForPrice, int count, IngridientType type);
+    void AddNewIng(string title, double price, int count, IngridientType type);
 }
     
