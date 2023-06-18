@@ -40,19 +40,7 @@ public class UserService : IUserService
         return user;
     }
 
-    //public void AddUser(string name, DateTime birthDate, int positionId, string comment, string scheduleDays, string scheduleTime)
-    //{
-    //    if (string.IsNullOrWhiteSpace(name))
-    //    {
-    //        throw new ArgumentNullException(nameof(name), $"Имя пользователя не может быть пустым.");
-    //    }
-
-    //    _userRepository.AddUser(name, birthDate, positionId, comment, scheduleDays, scheduleTime);
-
-    //    //отправить письмо на почту например
-    //}
-
-    public List<PositionOutput> GetAllPositions()
+    public List<PositionOutput>? GetAllPositions()
     {
         var positions = _userRepository.GetAllPositions().Select(x=>x.ToPositionOutput()).ToList();
 

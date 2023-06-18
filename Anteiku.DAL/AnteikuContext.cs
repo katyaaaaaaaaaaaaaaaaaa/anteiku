@@ -9,7 +9,7 @@ public class AnteikuContext : DbContext
     public AnteikuContext(DbContextOptions<AnteikuContext> options)
         : base(options)
     {
-        Database.EnsureDeleted();
+        //Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 

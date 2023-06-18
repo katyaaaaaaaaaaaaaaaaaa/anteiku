@@ -62,7 +62,7 @@
             this.groupBox1.Size = new System.Drawing.Size(711, 337);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Создание пользователя";
+            this.groupBox1.Text = "Изменение пользователя";
             // 
             // groupBox5
             // 

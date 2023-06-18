@@ -2,7 +2,10 @@
 using Anteiku.BLL.Mappings;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Abstractions;
+using Anteiku.DAL.Entities;
+using Anteiku.DAL.Enums;
 using Anteiku.DAL.Repositories;
+using System.Diagnostics;
 
 namespace Anteiku.BLL.UseCases;
 
@@ -66,4 +69,23 @@ public class DishService : IDishService
 
         return ingridients;
     }
+
+    public IngridientOutput? GetIngById(int id)
+    {
+        var findedIng = _dishRepository.GetIngById(id).ToIngridientOutput();
+        return findedIng;
+    }
+
+    public IngridientOutput UpdateIng(int id, int col)
+    {
+        var createdIng = _dishRepository.UpdateIng(id, col).ToIngridientOutput();
+        return createdIng;
+    }
+
+    public void AddNewIng(string title, double price, int countForPrice, int count, IngridientType type)
+    {
+        _dishRepository.AddIng(title,price,countForPrice, count,type);
+    }
+
+
 }

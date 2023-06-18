@@ -60,5 +60,31 @@ public static class ScheduleHelper
         };
     }
 
+    public static string GetTypeAsStringFromEnum(IngridientType ingridientType)
+    {
+        return ingridientType switch
+        {
+            IngridientType.COUNT => "Количество",
+            IngridientType.GRAMS => "Граммы",
+            IngridientType.MILLILITERS => "Миллилитры",
+            _ => throw new ArgumentException(),
+        };
+    }
+    public static IngridientType GetTypeAsEnumFromString(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            throw new ArgumentNullException();
+        }
+
+        return input switch
+        {
+            "Количество" => IngridientType.COUNT,
+            "Граммы" => IngridientType.GRAMS,
+            "Миллилитры" => IngridientType.MILLILITERS,
+            _ => throw new ArgumentException(),
+        };
+    }
+
 
 }

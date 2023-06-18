@@ -1,5 +1,6 @@
 ﻿using Anteiku.DAL.Abstractions;
 using Anteiku.DAL.Entities;
+using Anteiku.DAL.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Anteiku.DAL.Repositories;
@@ -27,12 +28,24 @@ public class DishRepository : IDishRepository
         return findedDish;
     }
 
+    public IngridientEntity? GetIngById(int id)
+    {
+        var findedIng = _db.Ingridients.FirstOrDefault(x => x.IngridientId == id );
+
+        if (findedIng is null)
+        {
+            throw new ArgumentException($"Ingridient with id {findedIng} not found");
+        }
+        return findedIng;
+    }
+
     public DishEntity? GetByTitle(string name)
     {
         var findedDish = _db.Dishes.FirstOrDefault(x => x.DishTitle == name);
 
         return findedDish;
     }
+
 
     public List<IngridientEntity> GetAllIngridients()
     {
@@ -111,4 +124,29 @@ public class DishRepository : IDishRepository
 
         return findedDish;
     }
+    public IngridientEntity UpdateIng(int id, int col)
+    {
+        var findedIng = GetIngById(id);
+
+
+        if (findedIng is null)
+        {
+            throw new ArgumentException(); 
+        }
+        findedIng.TotalCount +=col;
+        _db.Update(findedIng);
+
+        _db.SaveChanges();
+
+        return findedIng;
+    }
+    public void AddIng(string title, double price, int countForPrice, int count, IngridientType type)
+    {
+        var createdIng = new IngridientEntity {  IngridientTitle= title, IngridientType = type, CountForPrice = countForPrice, IngridientPriceInByn = price, TotalCount = count};
+
+        _db.Ingridients.Add(createdIng);
+
+        _db.SaveChanges();
+    }
+
 }

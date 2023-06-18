@@ -3,6 +3,7 @@ using Anteiku.BLL.Helpers;
 using Anteiku.BLL.Models;
 using Anteiku.DAL.Enums;
 using Anteiku.WinForms.Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Data;
 
 namespace Anteiku.WinForms;
@@ -15,6 +16,9 @@ public partial class MainMenuForm : Form
 
     private readonly string _positionTitle;
 
+    IngridientOutput _ingridient { get; set; }
+
+
     private List<UserOutput> users = new List<UserOutput>();
 
     private List<DishOutput> dishes = new List<DishOutput>();
@@ -25,6 +29,10 @@ public partial class MainMenuForm : Form
     private delegate void UsersCountHandler();
 
     private event UsersCountHandler UsersChanged;
+
+    private delegate void IngCountHandler();
+
+    private event IngCountHandler IngChanged;
 
     public MainMenuForm()
     {
@@ -87,6 +95,8 @@ public partial class MainMenuForm : Form
         ingridients = _dishService.GetAllIngridients();
 
         ingridientsGridView.DataSource = ingridients;
+
+        
     }
 
     private void UpdateUsersDataGridView()
@@ -199,6 +209,12 @@ public partial class MainMenuForm : Form
         UsersChanged.Invoke();
     }
 
+    private void ActionIng(object sender, EventArgs e)
+    {
+        this.Show();
+        IngChanged.Invoke();
+    }
+
     private void SheduleDays_comboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
 
@@ -209,9 +225,42 @@ public partial class MainMenuForm : Form
 
     }
 
-    private void UpdateProductsDataGridView()
+    private void zakup_button_Click(object sender, EventArgs e)
+    {
+
+        PurchaseIngridientsForm ZacupIngForm = new PurchaseIngridientsForm(_dishService);
+
+        ZacupIngForm.FormClosed += Action;
+
+        this.Hide();
+
+        ZacupIngForm.Show();
+    }
+
+    private void zacupButton_Click (object sender, EventArgs e)
+    {
+        var existIngId = _dishService.GetIngById(int.Parse(existIngIdTextBox.Text));
+
+        if (existIngId is null)
+        {
+            MessageBox.Show($"Ингридиент c id {existIngIdTextBox.Text} не найден!");
+        }
+        else
+        {
+            var col =int.Parse(colTextBox.Text);
+
+
+            _ingridient =_dishService.UpdateIng(int.Parse(existIngIdTextBox.Text), col);
+
+            IngChanged.Invoke();
+        }
+    }
+
+    private void UpdateIngDataGridView()
     {
         ingridients = _dishService.GetAllIngridients();
         ingridientsGridView.DataSource = ingridients;
     }
+
+    
 }

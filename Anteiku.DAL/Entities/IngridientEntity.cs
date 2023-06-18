@@ -10,7 +10,7 @@ public class IngridientEntity
     [Key]    
     public int IngridientId { get; set; }
 
-    public string IngridientTitle { get; set; }
+    public string? IngridientTitle { get; set; }
 
     /// <summary>
     /// Тип ингридиента: штучный или по весу

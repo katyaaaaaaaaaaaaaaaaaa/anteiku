@@ -9,5 +9,5 @@ public class PositionEntity
     [Key]
     public int PositionId { get; set; }
 
-    public string PositionTitle { get; set; }
+    public string? PositionTitle { get; set; }
 }

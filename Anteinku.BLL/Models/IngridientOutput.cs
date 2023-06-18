@@ -2,6 +2,8 @@
 
 public class IngridientOutput
 {
+    public int IngridientId { get; set; }
+
     public string Title { get; set; } = string.Empty;
 
     /// <summary>
